@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Sample_project">
         <activity
             android:name=".presentation.MainActivity"
+            android:theme="@style/Theme.Sample_project.Splashscreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
