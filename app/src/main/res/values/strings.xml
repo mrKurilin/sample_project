@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">sample_project</string>
+    <string name="navigation_menu_header_image">navigation_menu_header_image</string>
+    <string name="navigation_widgets">Widgets</string>
+    <string name="navigation_support">Support</string>
+    <string name="navigation_SQL">SQL</string>
+    <string name="navigation_feedback">Give me feedback</string>
+    <string name="open_navigation_drawer">Open navigation drawer</string>
+    <string name="close_navigation_drawer">Close navigation drawer</string>
 </resources>

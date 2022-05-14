@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_widgets"
+            android:title="@string/navigation_widgets"
+            android:checked="true"/>
+
+        <item
+            android:id="@+id/navigation_sql"
+            android:title="@string/navigation_SQL"/>
+    </group>
+
+    <item android:title="@string/navigation_support">
+        <menu>
+            <item
+                android:id="@+id/navigation_feedback"
+                android:title="@string/navigation_feedback"/>
+        </menu>
+    </item>
+
+</menu>
