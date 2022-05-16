@@ -22,11 +22,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
-        val toggle = ActionBarDrawerToggle(this,
-                                            drawerLayout,
-                                            toolbar,
-                                            R.string.open_navigation_drawer,
-                                            R.string.close_navigation_drawer)
+        val toggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.open_navigation_drawer,
+            R.string.close_navigation_drawer
+        )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
