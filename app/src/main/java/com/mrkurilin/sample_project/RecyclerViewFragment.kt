@@ -25,33 +25,13 @@ class RecyclerViewFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view_fragment)
         val lim = LinearLayoutManager(context)
         recyclerView.layoutManager = lim
-        val adapter = WidgetRecyclerAdapter(requireActivity().baseContext, WidgetItem.widgets)
+        val adapter =
+            WidgetRecyclerAdapter(requireActivity().baseContext, WidgetItem.widgets, recyclerView)
         recyclerView.adapter = adapter
 
         return view
 
     }
 
-    class WidgetViewHodler constructor(view: View) : RecyclerView.ViewHolder(view) {
-        val name = view.findViewById<TextView>(R.id.widget_list_item_text_view)
-        val layout = view.findViewById<ViewStub>(R.id.widget_list_item_stub_view)
 
-        init {
-            name.setOnClickListener {
-                if (layout.isVisible) {
-                    layout.visibility = View.GONE
-                } else {
-                    layout.visibility = View.VISIBLE
-                }
-            }
-        }
-
-        fun bind(widgetItem: WidgetItem) {
-            name.text = widgetItem.name
-            layout.layoutResource = widgetItem.layout
-            layout.inflate()
-            layout.visibility = View.GONE
-        }
-
-    }
 }
