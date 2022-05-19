@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TextView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_list_item_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
-    android:text="ХУЙ ХУЙ ХУЙ"/>
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/widget_list_item_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textview"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:id="@+id/widget_list_item_expandaple_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/ai" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
 
 
 

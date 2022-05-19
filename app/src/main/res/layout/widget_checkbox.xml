@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_list_item_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="16dp"
     android:orientation="vertical">
 
-    <CheckBox
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/widget_list_item_text_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="First checkbox"/>
+        android:text="@string/check_boxes"
+        android:textSize="13sp" />
 
-    <CheckBox
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/widget_list_item_expandaple_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Second checkbox"/>
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_checkbox" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/second_checkbox" />
+
+    </LinearLayout>
 
 </LinearLayout>
+

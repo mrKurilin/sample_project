@@ -5,9 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewStub
-import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -26,7 +23,7 @@ class RecyclerViewFragment : Fragment() {
         val lim = LinearLayoutManager(context)
         recyclerView.layoutManager = lim
         val adapter =
-            WidgetRecyclerAdapter(requireActivity().baseContext, WidgetItem.widgets, recyclerView)
+            WidgetRecyclerAdapter(requireActivity().baseContext)
         recyclerView.adapter = adapter
 
         return view

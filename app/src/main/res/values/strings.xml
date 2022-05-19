@@ -9,4 +9,9 @@
     <string name="close_navigation_drawer">Close navigation drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="check_boxes">Check Boxes</string>
+    <string name="first_checkbox">First checkbox</string>
+    <string name="second_checkbox">Second checkbox</string>
+    <string name="textview">TextView</string>
+    <string name="ai">ХУЙ ХУЙ ХУЙ</string>
 </resources>
