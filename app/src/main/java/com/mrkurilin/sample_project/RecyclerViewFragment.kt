@@ -7,24 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mrkurilin.sample_project.adapter.WidgetRecyclerAdapter
 
 class RecyclerViewFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.recycler_view_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_recycler_view, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_fragment)
-        val linearLayoutManager = LinearLayoutManager(context)
+        val linearLayoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = linearLayoutManager
-        val adapter =
-            WidgetRecyclerAdapter(requireActivity().baseContext)
+        val adapter = WidgetRecyclerAdapter(requireContext())
         recyclerView.adapter = adapter
     }
 
