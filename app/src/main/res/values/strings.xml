@@ -14,4 +14,9 @@
     <string name="second_checkbox">Second checkbox</string>
     <string name="textview">TextView</string>
     <string name="ai">РАЗ РАЗ РАЗ проверка связи</string>
+    <string name="first_radio_button">First Radio Button</string>
+    <string name="second_radio_button">Second Radio Button</string>
+    <string name="third_radio_button">Third Radio Button</string>
+    <string name="third_checkbox">Third Checkbox</string>
+    <string name="radio_button">Radio Button</string>
 </resources>
