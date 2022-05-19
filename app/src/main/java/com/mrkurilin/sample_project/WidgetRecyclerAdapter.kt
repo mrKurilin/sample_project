@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class WidgetRecyclerAdapter(
@@ -45,7 +45,7 @@ class WidgetRecyclerAdapter(
 
     class WidgetViewHodler constructor(view: View) :
         RecyclerView.ViewHolder(view) {
-        val name = view.findViewById<TextView>(R.id.widget_list_item_text_view)
+        val name = view.findViewById<Button>(R.id.widget_list_item_button)
         val expandapleLayout =
             view.findViewById<LinearLayout>(R.id.widget_list_item_expandaple_layout)
     }
