@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerViewFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -19,7 +17,7 @@ class RecyclerViewFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.recycler_view_fragment, container, false)
 
-        recyclerView = view.findViewById(R.id.recycler_view_fragment)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_fragment)
         val lim = LinearLayoutManager(context)
         recyclerView.layoutManager = lim
         val adapter =
@@ -27,8 +25,5 @@ class RecyclerViewFragment : Fragment() {
         recyclerView.adapter = adapter
 
         return view
-
     }
-
-
 }

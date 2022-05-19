@@ -32,7 +32,6 @@ class WidgetRecyclerAdapter(
                 return WidgetViewHodler(view)
             }
         }
-
     }
 
     override fun onBindViewHolder(holder: WidgetViewHodler, position: Int) {
@@ -44,7 +43,6 @@ class WidgetRecyclerAdapter(
                     this.expandapleLayout.visibility = View.GONE
                 }
             }
-
         }
     }
 
@@ -61,7 +59,5 @@ class WidgetRecyclerAdapter(
         val name = view.findViewById<TextView>(R.id.widget_list_item_text_view)
         val expandapleLayout =
             view.findViewById<LinearLayout>(R.id.widget_list_item_expandaple_layout)
-
     }
-
 }
