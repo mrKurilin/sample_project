@@ -17,20 +17,10 @@ class WidgetRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WidgetViewHodler {
 
-        when (viewType) {
-            0 -> {
-                val view = inflater.inflate(R.layout.widget_checkbox, parent, false)
-                return WidgetViewHodler(view)
-            }
-            1 -> {
-                val view = inflater.inflate(R.layout.widget_text_view, parent, false)
-                return WidgetViewHodler(view)
-            }
-            else -> {
-                val view = inflater.inflate(R.layout.widget_text_view, parent, false)
-                return WidgetViewHodler(view)
-            }
-        }
+        val layout = WidgetItem.widgets[viewType].layout
+
+        val view = inflater.inflate(layout, parent, false)
+        return WidgetViewHodler(view)
     }
 
     override fun onBindViewHolder(holder: WidgetViewHodler, position: Int) {
@@ -46,7 +36,7 @@ class WidgetRecyclerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return WidgetItem.widgets.size
     }
 
     override fun getItemViewType(position: Int): Int {
