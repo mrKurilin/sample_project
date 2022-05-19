@@ -14,16 +14,18 @@ class RecyclerViewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        return inflater.inflate(R.layout.recycler_view_fragment, container, false)
+    }
 
-        val view = inflater.inflate(R.layout.recycler_view_fragment, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_fragment)
-        val lim = LinearLayoutManager(context)
-        recyclerView.layoutManager = lim
+        val linearLayoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = linearLayoutManager
         val adapter =
             WidgetRecyclerAdapter(requireActivity().baseContext)
         recyclerView.adapter = adapter
-
-        return view
     }
+
 }

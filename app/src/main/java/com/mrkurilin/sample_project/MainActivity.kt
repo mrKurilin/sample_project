@@ -9,11 +9,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
     lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,16 +38,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        val fragment: Fragment
+        val itemId = item.itemId
 
-        when (id) {
+        when (itemId) {
             R.id.navigation_widgets -> {
-                fragment = RecyclerViewFragment()
+                val fragment = RecyclerViewFragment()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container_view, fragment)
                     .commit()
             }
+            else -> throw IllegalArgumentException("Unknown menu item")
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
