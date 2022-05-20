@@ -19,4 +19,5 @@
     <string name="third_radio_button">Third Radio Button</string>
     <string name="third_checkbox">Third Checkbox</string>
     <string name="radio_button">Radio Button</string>
+    <string name="rating_bar">Rating Bar</string>
 </resources>

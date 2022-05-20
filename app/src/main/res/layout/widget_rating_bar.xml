@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widget_list_item_linear_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/button_textview_widget"
+        android:id="@+id/button_rating_bar_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#808080"
         android:gravity="center_vertical"
-        android:text="@string/textview"
+        android:text="@string/rating_bar"
         android:textSize="13sp" />
 
-    <TextView
-        android:id="@+id/textview_textview_widget"
-        android:visibility="gone"
-        android:layout_width="match_parent"
+    <RatingBar
+        android:id="@+id/rating_bar_rating_bar_widget"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/ai" />
-
+        android:numStars="5"
+        android:stepSize="0.25"
+        android:rating="5"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 </LinearLayout>

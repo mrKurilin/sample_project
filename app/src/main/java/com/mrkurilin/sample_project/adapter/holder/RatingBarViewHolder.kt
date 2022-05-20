@@ -2,14 +2,15 @@ package com.mrkurilin.sample_project.adapter.holder
 
 import android.view.View
 import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.RatingBar
+import android.widget.TextView
 import com.mrkurilin.sample_project.R
 
-class CheckBoxViewHolder(view: View) : WidgetViewHolder(view) {
+class RatingBarViewHolder(view: View) : WidgetViewHolder(view) {
 
-    private val actionButton = view.findViewById<Button>(R.id.button_checkbox_widget)
-    private val expandablePart = view.findViewById<LinearLayout>(
-        R.id.expandable_layout_checkbox_widget
+    private val actionButton = view.findViewById<Button>(R.id.button_rating_bar_widget)
+    private val expandablePart = view.findViewById<RatingBar>(
+        R.id.rating_bar_rating_bar_widget
     )
     private var isExpanded = false
 
@@ -21,7 +22,6 @@ class CheckBoxViewHolder(view: View) : WidgetViewHolder(view) {
             } else {
                 expandablePart.visibility = View.GONE
                 isExpanded = false
-
             }
         }
     }
