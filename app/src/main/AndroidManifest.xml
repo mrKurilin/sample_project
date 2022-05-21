@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sample_project">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/Theme.Sample_project.Splashscreen"
             android:exported="true">
             <intent-filter>

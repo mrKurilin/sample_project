@@ -9,4 +9,15 @@
     <string name="close_navigation_drawer">Close navigation drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="check_boxes">Check Boxes</string>
+    <string name="first_checkbox">First checkbox</string>
+    <string name="second_checkbox">Second checkbox</string>
+    <string name="textview">TextView</string>
+    <string name="ai">РАЗ РАЗ РАЗ проверка связи</string>
+    <string name="first_radio_button">First Radio Button</string>
+    <string name="second_radio_button">Second Radio Button</string>
+    <string name="third_radio_button">Third Radio Button</string>
+    <string name="third_checkbox">Third Checkbox</string>
+    <string name="radio_button">Radio Button</string>
+    <string name="rating_bar">Rating Bar</string>
 </resources>
