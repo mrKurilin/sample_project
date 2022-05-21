@@ -7,18 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 import com.mrkurilin.sample_project.adapter.holder.*
 
-private const val WIDGETS_COUNT = 4
-
 private const val CHECKBOX_VIEW_TYPE = 0
 private const val RADIOBUTTON_VIEW_TYPE = 1
 private const val TEXTVIEW_VIEW_TYPE = 2
 private const val RATINGBAR_VIEW_TYPE = 3
 
-private val viewTypes = mapOf(
-    CHECKBOX_VIEW_TYPE to 0,
-    RADIOBUTTON_VIEW_TYPE to 1,
-    TEXTVIEW_VIEW_TYPE to 2,
-    RATINGBAR_VIEW_TYPE to 3,
+private val viewTypes = arrayOf(
+    CHECKBOX_VIEW_TYPE,
+    RADIOBUTTON_VIEW_TYPE,
+    TEXTVIEW_VIEW_TYPE,
+    RATINGBAR_VIEW_TYPE,
 )
 
 class WidgetRecyclerAdapter(
@@ -53,10 +51,10 @@ class WidgetRecyclerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return WIDGETS_COUNT
+        return viewTypes.size
     }
 
     override fun getItemViewType(position: Int): Int {
-        return viewTypes.getValue(position)
+        return viewTypes[position]
     }
 }
