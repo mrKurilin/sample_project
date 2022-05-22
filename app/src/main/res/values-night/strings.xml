@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="rating_bar">Rating Bar</string>
+    <string name="switcher">Switch</string>
+    <string name="switchertext">Switcher</string>
+    <string name="enter_text_here">Enter text here</string>
 </resources>
