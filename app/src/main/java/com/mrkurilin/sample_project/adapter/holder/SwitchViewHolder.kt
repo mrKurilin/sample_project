@@ -3,6 +3,7 @@ package com.mrkurilin.sample_project.adapter.holder
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.view.isVisible
 import com.mrkurilin.sample_project.R
 
 class SwitchViewHolder(view: View) : WidgetViewHolder(view) {
@@ -15,17 +16,12 @@ class SwitchViewHolder(view: View) : WidgetViewHolder(view) {
 
     init {
         actionButton.setOnClickListener {
-            if (expandablePart.visibility == View.GONE) {
-                expandablePart.visibility = View.VISIBLE
-                isExpanded = true
-            } else {
-                expandablePart.visibility = View.GONE
-                isExpanded = false
-            }
+            isExpanded = !isExpanded
+            expandablePart.isVisible = isExpanded
         }
     }
 
     override fun bind() {
-        if (isExpanded) expandablePart.visibility = View.VISIBLE
+        expandablePart.isVisible = isExpanded
     }
 }

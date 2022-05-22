@@ -11,12 +11,14 @@ private const val CHECKBOX_VIEW_TYPE = 0
 private const val RADIOBUTTON_VIEW_TYPE = 1
 private const val TEXTVIEW_VIEW_TYPE = 2
 private const val RATINGBAR_VIEW_TYPE = 3
+private const val SWITCH_VIEW_TYPE = 4
 
 private val viewTypes = arrayOf(
     CHECKBOX_VIEW_TYPE,
     RADIOBUTTON_VIEW_TYPE,
     TEXTVIEW_VIEW_TYPE,
     RATINGBAR_VIEW_TYPE,
+    SWITCH_VIEW_TYPE
 )
 
 class WidgetRecyclerAdapter(
@@ -42,6 +44,11 @@ class WidgetRecyclerAdapter(
                 val view = inflater.inflate(R.layout.widget_rating_bar, parent, false)
                 RatingBarViewHolder(view)
             }
+            SWITCH_VIEW_TYPE -> {
+                val view = inflater.inflate(R.layout.widget_switch, parent, false)
+                SwitchViewHolder(view)
+            }
+
             else -> throw IllegalArgumentException("Wrong ViewType")
         }
     }
