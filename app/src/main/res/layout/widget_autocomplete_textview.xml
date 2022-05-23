@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/button_edittext_widget"
+        android:id="@+id/button_autocomplete_textview_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#808080"
         android:gravity="center_vertical"
+        android:text="@string/autocomplete_textview"
         android:textAllCaps="false"
-        android:text="@string/edittext"
         android:textSize="13sp" />
 
-    <EditText
-        android:id="@+id/edittext_edittext_widget"
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/autocomplete_textview_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:hint="@string/enter_text_here"/>
+        android:textSize="13sp" />
 
 </LinearLayout>
+
