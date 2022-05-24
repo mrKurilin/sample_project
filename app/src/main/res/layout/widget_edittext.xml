@@ -14,7 +14,6 @@
         android:text="@string/edittext"
         android:textSize="13sp" />
 
-
     <EditText
         android:id="@+id/edittext_edittext_widget"
         android:layout_width="match_parent"

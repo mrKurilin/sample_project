@@ -7,4 +7,6 @@
     <string name="edittext">EditText</string>
     <string name="spinner">Spinner</string>
     <string name="autocomplete_textview">Autocomplete Textview</string>
+    <string name="seekbar">SeekBar</string>
+    <string name="_0">0</string>
 </resources>
