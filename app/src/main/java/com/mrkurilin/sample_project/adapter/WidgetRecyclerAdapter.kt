@@ -15,6 +15,7 @@ private const val SWITCH_VIEW_TYPE = 4
 private const val EDITTEXT_VIEW_TYPE = 5
 private const val SPINNER_VIEW_TYPE = 6
 private const val AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE = 7
+private const val SEEKBAR_VIEW_TYPE = 8
 
 private val viewTypes = arrayOf(
     CHECKBOX_VIEW_TYPE,
@@ -25,6 +26,7 @@ private val viewTypes = arrayOf(
     EDITTEXT_VIEW_TYPE,
     SPINNER_VIEW_TYPE,
     AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE,
+    SEEKBAR_VIEW_TYPE,
 )
 
 class WidgetRecyclerAdapter(
@@ -66,7 +68,10 @@ class WidgetRecyclerAdapter(
                 val view = inflater.inflate(R.layout.widget_autocomplete_textview, parent, false)
                 AutocompleteViewHolder(view)
             }
-
+            SEEKBAR_VIEW_TYPE -> {
+                val view = inflater.inflate(R.layout.widget_seekbar, parent, false)
+                SeekBarViewHolder(view)
+            }
 
             else -> throw IllegalArgumentException("Wrong ViewType")
         }
