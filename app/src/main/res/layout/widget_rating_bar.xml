@@ -9,7 +9,7 @@
         android:id="@+id/button_rating_bar_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#808080"
+        android:backgroundTint="@color/button_color"
         android:gravity="center_vertical"
         android:text="@string/rating_bar"
         android:textAllCaps="false"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="sample_array">
+    <string-array name="widgets_auto_complete_sample">
         <item>association</item>
         <item>awareness</item>
         <item>advertising</item>
