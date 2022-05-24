@@ -21,15 +21,16 @@ class SeekBarViewHolder(view: View) : WidgetViewHolder(view) {
             expandablePart.isVisible = isExpanded
         }
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                textView.text = p1.toString()
+
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                textView.text = progress.toString()
             }
 
-            override fun onStartTrackingTouch(p0: SeekBar?) {
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
                 Toast.makeText(view.context, "onStartTrackingTouch", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onStopTrackingTouch(p0: SeekBar?) {
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 Toast.makeText(view.context, "onStopTrackingTouch", Toast.LENGTH_SHORT).show()
             }
         })
