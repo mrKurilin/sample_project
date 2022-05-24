@@ -10,8 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:backgroundTint="#808080"
+        android:backgroundTint="@color/smoke"
         android:text="@string/check_boxes"
+        android:textAllCaps="false"
         android:textSize="13sp" />
 
     <LinearLayout

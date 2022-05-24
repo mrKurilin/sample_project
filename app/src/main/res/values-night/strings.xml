@@ -4,4 +4,7 @@
     <string name="switcher">Switch</string>
     <string name="switchertext">Switcher</string>
     <string name="enter_text_here">Enter text here</string>
+    <string name="edittext">EditText</string>
+    <string name="spinner">Spinner</string>
+    <string name="autocomplete_textview">Autocomplete Textview</string>
 </resources>

@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/button_textview_widget"
+        android:id="@+id/button_spinner_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/smoke"
         android:gravity="center_vertical"
-        android:text="@string/textview"
+        android:text="@string/spinner"
         android:textAllCaps="false"
         android:textSize="13sp" />
 
-    <TextView
-        android:id="@+id/textview_textview_widget"
-        android:visibility="gone"
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_spinner_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/ai" />
-
+        android:entries="@array/spinner_array"
+        android:visibility="gone" />
 
 </LinearLayout>

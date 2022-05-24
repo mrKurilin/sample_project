@@ -6,22 +6,20 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/button_textview_widget"
+        android:id="@+id/button_autocomplete_textview_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/smoke"
         android:gravity="center_vertical"
-        android:text="@string/textview"
+        android:text="@string/autocomplete_textview"
         android:textAllCaps="false"
         android:textSize="13sp" />
 
-    <TextView
-        android:id="@+id/textview_textview_widget"
-        android:visibility="gone"
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/autocomplete_textview_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/ai" />
-
+        android:textSize="13sp" />
 
 </LinearLayout>
+
