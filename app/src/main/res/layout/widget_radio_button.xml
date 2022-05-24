@@ -9,7 +9,7 @@
         android:id="@+id/button_radio_button_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_color"
+        android:backgroundTint="@color/smoke"
         android:gravity="center_vertical"
         android:text="@string/radio_button"
         android:textAllCaps="false"
