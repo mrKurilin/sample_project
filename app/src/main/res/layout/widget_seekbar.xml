@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mrkurilin.sample_project.ExpandableView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <Button
-        android:id="@+id/button_seekbar_widget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/smoke"
-        android:gravity="center_vertical"
-        android:text="@string/seekbar"
-        android:textAllCaps="false"
-        android:textSize="13sp" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:toggleButtonText="@string/seekbar">
 
     <LinearLayout
         android:id="@+id/linearlayout_seekbar_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/textview_seekbar_widget"
@@ -39,4 +31,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</com.mrkurilin.sample_project.ExpandableView>

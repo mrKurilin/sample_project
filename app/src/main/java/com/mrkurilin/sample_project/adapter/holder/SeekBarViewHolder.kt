@@ -7,19 +7,10 @@ import com.mrkurilin.sample_project.R
 
 class SeekBarViewHolder(view: View) : WidgetViewHolder(view) {
 
-    private val actionButton = view.findViewById<Button>(R.id.button_seekbar_widget)
-    private val expandablePart = view.findViewById<LinearLayout>(
-        R.id.linearlayout_seekbar_widget
-    )
     private val textView = view.findViewById<TextView>(R.id.textview_seekbar_widget)
     private val seekBar = view.findViewById<SeekBar>(R.id.seekbar_seekbar_widget)
-    private var isExpanded = false
 
     init {
-        actionButton.setOnClickListener {
-            isExpanded = !isExpanded
-            expandablePart.isVisible = isExpanded
-        }
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -36,7 +27,5 @@ class SeekBarViewHolder(view: View) : WidgetViewHolder(view) {
         })
     }
 
-    override fun bind() {
-        expandablePart.isVisible = isExpanded
-    }
+    override fun bind() { }
 }

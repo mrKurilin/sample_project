@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mrkurilin.sample_project.ExpandableView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <Button
-        android:id="@+id/button_autocomplete_textview_widget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/smoke"
-        android:gravity="center_vertical"
-        android:text="@string/autocomplete_textview"
-        android:textAllCaps="false"
-        android:textSize="13sp" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:toggleButtonText="@string/autocomplete_textview">
 
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/autocomplete_textview_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        android:visibility="gone"
+        android:completionThreshold="1"/>
 
-</LinearLayout>
-
+</com.mrkurilin.sample_project.ExpandableView>
