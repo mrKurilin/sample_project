@@ -14,11 +14,13 @@ abstract class WidgetViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     init {
         toggleButton.setOnClickListener {
             isExpanded = !isExpanded
-            (itemView as ExpandableView).toggle()
+            (view as ExpandableView).toggle()
         }
     }
 
     fun bind(){
-        (itemView as ExpandableView).isExpanded = isExpanded
+        if (isExpanded) {
+            (itemView as ExpandableView).toggle()
+        }
     }
 }

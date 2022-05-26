@@ -12,16 +12,10 @@ class ExpandableView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-    defStyleRes: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
+) : LinearLayout(context, attrs, defStyleAttr) {
 
     private val toggleButton: Button
-    var isExpanded = false
-    var toggleButtonText: String = "Widget"
-        set(value) {
-            field = value
-            toggleButton.text = field
-        }
+    private var isContentVisible = false
 
     init {
         View.inflate(context, R.layout.view_expandable_layout, this)
@@ -29,27 +23,29 @@ class ExpandableView @JvmOverloads constructor(
 
         toggleButton = findViewById(R.id.button_expandable_view)
 
-        initializeAttributes(attrs, defStyleAttr, defStyleRes)
+        initializeAttributes(attrs)
     }
 
-    fun initializeAttributes(attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) {
-        if (attrs == null) return
+    fun initializeAttributes(attrs: AttributeSet?) {
+        if (attrs == null) {
+            return
+        }
 
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ExpandableView, defStyleAttr, defStyleRes)
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ExpandableView)
         val text = typedArray.getString(R.styleable.ExpandableView_toggleButtonText)
-        toggleButtonText = text ?: "Widget"
+        toggleButton.text = text
         typedArray.recycle()
     }
 
     fun toggle() {
-        pToggle()
+        changeContentVisibility()
     }
 
-    private fun pToggle() {
-        isExpanded = !isExpanded
+    private fun changeContentVisibility() {
+        isContentVisible = !isContentVisible
         children.forEach { child ->
             if (child.id != R.id.button_expandable_view) {
-                child.isVisible = isExpanded
+                child.isVisible = isContentVisible
             }
         }
     }
