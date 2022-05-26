@@ -16,7 +16,7 @@ class ExpandableView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     private val toggleButton: Button
-    private var isExpanded = false
+    var isExpanded = false
     var toggleButtonText: String = "Widget"
         set(value) {
             field = value
@@ -28,10 +28,6 @@ class ExpandableView @JvmOverloads constructor(
         orientation = VERTICAL
 
         toggleButton = findViewById(R.id.button_expandable_view)
-
-        toggleButton.setOnClickListener{
-            pToggle()
-        }
 
         initializeAttributes(attrs, defStyleAttr, defStyleRes)
     }

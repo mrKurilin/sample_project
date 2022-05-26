@@ -18,7 +18,4 @@ class AutocompleteViewHolder(view: View) : WidgetViewHolder(view) {
         )
         autoCompleteTextView.setAdapter(adapter)
     }
-
-    override fun bind() {
-    }
 }

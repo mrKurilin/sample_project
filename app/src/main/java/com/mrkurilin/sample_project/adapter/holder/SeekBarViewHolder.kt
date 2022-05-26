@@ -2,7 +2,6 @@ package com.mrkurilin.sample_project.adapter.holder
 
 import android.view.View
 import android.widget.*
-import androidx.core.view.isVisible
 import com.mrkurilin.sample_project.R
 
 class SeekBarViewHolder(view: View) : WidgetViewHolder(view) {
@@ -26,6 +25,4 @@ class SeekBarViewHolder(view: View) : WidgetViewHolder(view) {
             }
         })
     }
-
-    override fun bind() { }
 }
