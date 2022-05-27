@@ -31,10 +31,10 @@ private val viewTypes = arrayOf(
 
 class WidgetRecyclerAdapter(
     context: Context
-) : RecyclerView.Adapter<WidgetViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val inflater = LayoutInflater.from(context)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WidgetViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             CHECKBOX_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_checkbox, parent, false)
@@ -77,8 +77,7 @@ class WidgetRecyclerAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: WidgetViewHolder, position: Int) {
-        holder.bind()
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
     }
 
     override fun getItemCount(): Int {

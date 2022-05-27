@@ -22,7 +22,9 @@ class ExpandableView @JvmOverloads constructor(
         orientation = VERTICAL
 
         toggleButton = findViewById(R.id.button_expandable_view)
-
+        toggleButton.setOnClickListener {
+            changeContentVisibility()
+        }
         initializeAttributes(attrs)
     }
 
@@ -32,8 +34,8 @@ class ExpandableView @JvmOverloads constructor(
         }
 
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ExpandableView)
-        val text = typedArray.getString(R.styleable.ExpandableView_toggleButtonText)
-        toggleButton.text = text
+        val buttonText = typedArray.getString(R.styleable.ExpandableView_toggleButtonText)
+        toggleButton.text = buttonText
         typedArray.recycle()
     }
 

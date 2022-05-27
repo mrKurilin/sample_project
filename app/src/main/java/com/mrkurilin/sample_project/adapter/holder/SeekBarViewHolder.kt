@@ -2,9 +2,10 @@ package com.mrkurilin.sample_project.adapter.holder
 
 import android.view.View
 import android.widget.*
+import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 
-class SeekBarViewHolder(view: View) : WidgetViewHolder(view) {
+class SeekBarViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val textView = view.findViewById<TextView>(R.id.textview_seekbar_widget)
     private val seekBar = view.findViewById<SeekBar>(R.id.seekbar_seekbar_widget)
