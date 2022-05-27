@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mrkurilin.sample_project.ExpandableView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <Button
-        android:id="@+id/button_edittext_widget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/smoke"
-        android:gravity="center_vertical"
-        android:textAllCaps="false"
-        android:text="@string/edittext"
-        android:textSize="13sp" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:toggleButtonText="@string/edittext">
 
     <EditText
         android:id="@+id/edittext_edittext_widget"
@@ -20,6 +11,7 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:maxLength="20"
-        android:hint="@string/enter_text_here"/>
+        android:hint="@string/enter_text_here"
+        android:visibility="gone"/>
 
-</LinearLayout>
+</com.mrkurilin.sample_project.ExpandableView>

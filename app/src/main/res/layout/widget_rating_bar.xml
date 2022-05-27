@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mrkurilin.sample_project.ExpandableView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <Button
-        android:id="@+id/button_rating_bar_widget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/smoke"
-        android:gravity="center_vertical"
-        android:text="@string/rating_bar"
-        android:textAllCaps="false"
-        android:textSize="13sp" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:toggleButtonText="@string/rating_bar">
 
     <RatingBar
         android:id="@+id/rating_bar_rating_bar_widget"
@@ -25,4 +16,4 @@
         android:layout_gravity="center"
         android:visibility="gone"/>
 
-</LinearLayout>
+</com.mrkurilin.sample_project.ExpandableView>

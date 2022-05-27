@@ -3,18 +3,12 @@ package com.mrkurilin.sample_project.adapter.holder
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Button
-import androidx.core.view.isVisible
+import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 
-class AutocompleteViewHolder(view: View) : WidgetViewHolder(view) {
+class AutocompleteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val actionButton = view.findViewById<Button>(R.id.button_autocomplete_textview_widget)
-    private val expandablePart = view.findViewById<AutoCompleteTextView>(
-        R.id.autocomplete_textview_widget
-    )
-    private var isExpanded = false
-
+    private val autoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.autocomplete_textview_widget)
     private val autoCompleteStringArray = view.resources.getStringArray(R.array.widgets_auto_complete_sample)
 
     init {
@@ -23,15 +17,6 @@ class AutocompleteViewHolder(view: View) : WidgetViewHolder(view) {
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
             autoCompleteStringArray
         )
-        expandablePart.setAdapter(adapter)
-        expandablePart.threshold = 1
-        actionButton.setOnClickListener {
-            isExpanded = !isExpanded
-            expandablePart.isVisible = isExpanded
-        }
-    }
-
-    override fun bind() {
-        expandablePart.isVisible = isExpanded
+        autoCompleteTextView.setAdapter(adapter)
     }
 }

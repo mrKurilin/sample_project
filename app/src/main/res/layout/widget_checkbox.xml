@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mrkurilin.sample_project.ExpandableView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <Button
-        android:id="@+id/button_checkbox_widget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:backgroundTint="@color/smoke"
-        android:text="@string/check_boxes"
-        android:textAllCaps="false"
-        android:textSize="13sp" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:toggleButtonText="@string/check_boxes">
 
     <LinearLayout
         android:id="@+id/expandable_layout_checkbox_widget"
@@ -39,5 +30,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
-
+</com.mrkurilin.sample_project.ExpandableView>
