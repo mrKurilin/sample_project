@@ -28,4 +28,12 @@
     <string name="autocomplete_textview">Autocomplete Textview</string>
     <string name="seekbar">SeekBar</string>
     <string name="_0">0</string>
+    <string name="texton">textOn</string>
+    <string name="textoff">textOff</string>
+    <string name="first_chip">Chip 1</string>
+    <string name="second_chip">Chip 2</string>
+    <string name="third_chip">Chip 3</string>
+    <string name="fourth_chip">Chip 4</string>
+    <string name="fifth_chip">Chip 5</string>
+    <string name="start">Start</string>
 </resources>
