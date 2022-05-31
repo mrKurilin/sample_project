@@ -30,7 +30,7 @@ class ProgressBarViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 override fun run() {
                     progressBarHorizontal.progress += 1
                     if (progressBarHorizontal.progress < 100) {
-                        handler.postDelayed(this, 100)
+                        handler.postDelayed(this, 50)
                     } else {
                         startButton.visibility = View.VISIBLE
                         progressBarCircle.visibility = View.GONE
