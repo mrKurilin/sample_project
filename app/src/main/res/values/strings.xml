@@ -1,40 +1,49 @@
 <resources>
     <string name="app_name">sample_project</string>
-    <string name="navigation_menu_header_image">navigation_menu_header_image</string>
+
     <string name="navigation_widgets">Widgets</string>
-    <string name="navigation_support">Support</string>
     <string name="navigation_SQL">SQL</string>
-    <string name="navigation_feedback">Give me feedback</string>
+
+    <string name="navigation_menu_header_image">navigation_menu_header_image</string>
     <string name="open_navigation_drawer">Open navigation drawer</string>
     <string name="close_navigation_drawer">Close navigation drawer</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="autocomplete_textview">Autocomplete Textview</string>
     <string name="check_boxes">Check Boxes</string>
+    <string name="chips">Chips</string>
+    <string name="edittext">EditText</string>
+    <string name="progressbar">Progress Bar</string>
+    <string name="radio_button">Radio Button</string>
+    <string name="rating_bar">Rating Bar</string>
+    <string name="seekbar">SeekBar</string>
+    <string name="spinner">Spinner</string>
+    <string name="switcher">Switch</string>
     <string name="textview">TextView</string>
+    <string name="togglebutton">Toggle Button</string>
+
+    <string name="switchertext">Switcher</string>
+    <string name="enter_text_here">Enter text here</string>
+    <string name="_0">0</string>
+
+    <string name="texton">textOn</string>
+    <string name="textoff">textOff</string>
+
+    <string name="first_chip">Chip 1</string>
+    <string name="second_chip">Chip 2</string>
+    <string name="third_chip">Chip 3</string>
+    <string name="fourth_chip">Chip 4</string>
+    <string name="fifth_chip">Chip 5</string>
+
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+
+    <string name="start">Start</string>
+
     <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Morbi lobortis tortor enim, sed mattis turpis tempus non. Integer a sapien egestas, sodales
         elit a, volutpat erat. Nullam aliquam nisi mauris, non tincidunt nulla convallis ac. Cras
         nec est vitae arcu auctor dictum. Donec eleifend sagittis sapien, a maximus libero mollis
         in. Nam maximus massa lectus, nec accumsan eros molestie ut. Vestibulum dui velit, rutrum
         vel hendrerit eget, condimentum non augue. </string>
-    <string name="radio_button">Radio Button</string>
-    <string name="rating_bar">Rating Bar</string>
-    <string name="switcher">Switch</string>
-    <string name="switchertext">Switcher</string>
-    <string name="enter_text_here">Enter text here</string>
-    <string name="edittext">EditText</string>
-    <string name="spinner">Spinner</string>
-    <string name="autocomplete_textview">Autocomplete Textview</string>
-    <string name="seekbar">SeekBar</string>
-    <string name="_0">0</string>
-    <string name="texton">textOn</string>
-    <string name="textoff">textOff</string>
-    <string name="first_chip">Chip 1</string>
-    <string name="second_chip">Chip 2</string>
-    <string name="third_chip">Chip 3</string>
-    <string name="fourth_chip">Chip 4</string>
-    <string name="fifth_chip">Chip 5</string>
-    <string name="red">Red</string>
-    <string name="green">Green</string>
-    <string name="blue">Blue</string>
-    <string name="start">Start</string>
 </resources>

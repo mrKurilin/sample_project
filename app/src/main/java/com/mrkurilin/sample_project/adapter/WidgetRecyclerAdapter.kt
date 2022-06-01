@@ -104,4 +104,18 @@ class WidgetRecyclerAdapter(
     override fun getItemViewType(position: Int): Int {
         return viewTypes[position]
     }
+
+    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
+        if (holder is ProgressBarViewHolder && holder.started) {
+            holder.resumeTimer()
+        }
+    }
+
+    override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
+        if (holder is ProgressBarViewHolder) {
+            if (holder.started) {
+                holder.stopTimer()
+            }
+        }
+    }
 }
