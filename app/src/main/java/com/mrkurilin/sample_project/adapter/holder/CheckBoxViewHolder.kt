@@ -16,20 +16,31 @@ class CheckBoxViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
         when (buttonView.id) {
-            R.id.checkbox_red_checkbox_widget -> redColor = if (isChecked) 255 else 0
-            R.id.checkbox_green_checkbox_widget -> greenColor = if (isChecked) 255 else 0
-            R.id.checkbox_blue_checkbox_widget -> blueColor = if (isChecked) 255 else 0
+            R.id.checkbox_red_checkbox_widget -> redColor = getColorInt(isChecked)
+            R.id.checkbox_green_checkbox_widget -> greenColor = getColorInt(isChecked)
+            R.id.checkbox_blue_checkbox_widget -> blueColor = getColorInt(isChecked)
         }
-        updateUI()
+        updateViewColor()
     }
 
     init {
-        view.findViewById<CheckBox>(R.id.checkbox_red_checkbox_widget).setOnCheckedChangeListener(listener)
-        view.findViewById<CheckBox>(R.id.checkbox_green_checkbox_widget).setOnCheckedChangeListener(listener)
-        view.findViewById<CheckBox>(R.id.checkbox_blue_checkbox_widget).setOnCheckedChangeListener(listener)
+        view.findViewById<CheckBox>(R.id.checkbox_red_checkbox_widget)
+            .setOnCheckedChangeListener(listener)
+        view.findViewById<CheckBox>(R.id.checkbox_green_checkbox_widget)
+            .setOnCheckedChangeListener(listener)
+        view.findViewById<CheckBox>(R.id.checkbox_blue_checkbox_widget)
+            .setOnCheckedChangeListener(listener)
     }
 
-    private fun updateUI() {
+    private fun getColorInt(isChecked: Boolean): Int {
+        return if (isChecked) {
+            255
+        } else {
+            0
+        }
+    }
+
+    private fun updateViewColor() {
         viewColor.setBackgroundColor(Color.rgb(redColor, greenColor, blueColor))
     }
 }

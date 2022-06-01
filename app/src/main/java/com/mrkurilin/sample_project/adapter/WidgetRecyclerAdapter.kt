@@ -106,16 +106,14 @@ class WidgetRecyclerAdapter(
     }
 
     override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
-        if (holder is ProgressBarViewHolder && holder.started) {
-            holder.resumeTimer()
+        if (holder is ProgressBarViewHolder) {
+            holder.onViewAttachedToWindow()
         }
     }
 
     override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
         if (holder is ProgressBarViewHolder) {
-            if (holder.started) {
-                holder.stopTimer()
-            }
+            holder.onViewDetachedFromWindow()
         }
     }
 }

@@ -4,10 +4,12 @@ import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
-import kotlin.math.absoluteValue
-import kotlin.properties.Delegates
+
+private const val DEFAULT_TIMER_DURATION = 15000L
+private const val DEFAULT_FINISH_TIME = 0L
 
 class ProgressBarViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -18,9 +20,8 @@ class ProgressBarViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val progressBarHorizontal: ProgressBar = view.findViewById(
         R.id.progressbar_horizontal_progressbar_widget
     )
-    var started = false
-    private var finishTime by Delegates.notNull<Long>()
-    lateinit var countDownTimer: CountDownTimer
+    private var finishTime = DEFAULT_FINISH_TIME
+    private var countDownTimer: CountDownTimer? = null
 
     init {
         progressBarHorizontal.max = DEFAULT_TIMER_DURATION.toInt()
@@ -28,54 +29,46 @@ class ProgressBarViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         startButton.setOnClickListener {
             progressBarHorizontal.progress = 0
 
-            startButton.visibility = View.GONE
-            progressBarCircle.visibility = View.VISIBLE
-            progressBarHorizontal.visibility = View.VISIBLE
+            setContentVisibility(inProgress = true)
 
             finishTime = System.currentTimeMillis() + DEFAULT_TIMER_DURATION
 
             countDownTimer = getCountDownTimer(DEFAULT_TIMER_DURATION)
-            countDownTimer.start()
-            started = true
+            countDownTimer?.start()
         }
     }
 
-    fun buttonToVisible() {
-        startButton.visibility = View.VISIBLE
-        progressBarCircle.visibility = View.GONE
-        progressBarHorizontal.visibility = View.GONE
-
-        started = false
+    fun setContentVisibility(inProgress: Boolean) {
+        startButton.isVisible = !inProgress
+        progressBarCircle.isVisible = inProgress
+        progressBarHorizontal.isVisible = inProgress
     }
 
     private fun getCountDownTimer(millisInFuture: Long): CountDownTimer {
         return object : CountDownTimer(millisInFuture, 15) {
+
             override fun onTick(millisUntilFinished: Long) {
-                progressBarHorizontal.progress = (
-                        DEFAULT_TIMER_DURATION
-                                - finishTime
-                                + System.currentTimeMillis()
-                        ).absoluteValue.toInt()
+                val timePast = (DEFAULT_TIMER_DURATION - millisUntilFinished).toInt()
+                progressBarHorizontal.progress = timePast
             }
 
             override fun onFinish() {
-                buttonToVisible()
-                started = false
+                setContentVisibility(inProgress = false)
             }
         }
     }
 
-    fun stopTimer() {
-        countDownTimer.cancel()
-    }
-
-    fun resumeTimer() {
+    fun onViewAttachedToWindow() {
         val timeLeft = finishTime - System.currentTimeMillis()
-        countDownTimer = getCountDownTimer(timeLeft)
-        countDownTimer.start()
+        if (timeLeft > 0) {
+            countDownTimer = getCountDownTimer(timeLeft)
+            countDownTimer?.start()
+        } else {
+            setContentVisibility(false)
+        }
     }
 
-    companion object {
-        private const val DEFAULT_TIMER_DURATION = 1500L
+    fun onViewDetachedFromWindow() {
+        countDownTimer?.cancel()
     }
 }
