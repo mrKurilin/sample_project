@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.mrkurilin.sample_project.ExpandableView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:toggleButtonText="@string/spinner">
 
     <androidx.appcompat.widget.AppCompatSpinner
@@ -10,8 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/spinner_array"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_expandable_view"/>
+        android:visibility="gone" />
 
 </com.mrkurilin.sample_project.ExpandableView>

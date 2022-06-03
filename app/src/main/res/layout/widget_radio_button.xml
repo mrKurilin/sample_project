@@ -6,44 +6,43 @@
     android:layout_height="wrap_content"
     app:toggleButtonText="@string/radio_button">
 
-    <RadioGroup
-        android:id="@+id/radio_group_radiobutton_widget"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_expandable_view">
+        android:visibility="gone">
 
-        <RadioButton
-            android:id="@+id/red_radiobutton_radiobutton_widget"
+        <RadioGroup
+            android:id="@+id/radio_group_radiobutton_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/red_radiobutton_radiobutton_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/red" />
+
+            <RadioButton
+                android:id="@+id/green_radiobutton_radiobutton_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/green" />
+
+            <RadioButton
+                android:id="@+id/blue_radiobutton_radiobutton_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/blue" />
+
+        </RadioGroup>
+
+        <View
+            android:id="@+id/view_radiobutton_widget"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/red" />
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:background="@color/white" />
 
-        <RadioButton
-            android:id="@+id/green_radiobutton_radiobutton_widget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/green" />
-
-        <RadioButton
-            android:id="@+id/blue_radiobutton_radiobutton_widget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/blue" />
-
-    </RadioGroup>
-
-    <View
-        android:id="@+id/view_radiobutton_widget"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:background="@color/white"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/radio_group_radiobutton_widget"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/radio_group_radiobutton_widget"
-        app:layout_constraintTop_toBottomOf="@+id/button_expandable_view" />
+    </LinearLayout>
 
 </com.mrkurilin.sample_project.ExpandableView>

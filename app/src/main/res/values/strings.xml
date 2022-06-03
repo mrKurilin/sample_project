@@ -28,8 +28,8 @@
     <string name="texton">textOn</string>
     <string name="textoff">textOff</string>
 
-    <string name="first_chip">Chip 1</string>
-    <string name="second_chip">Chip 2</string>
+    <string name="starts_with_k">Starts with letter K</string>
+    <string name="end_with_n">End with letter N</string>
     <string name="third_chip">Chip 3</string>
     <string name="fourth_chip">Chip 4</string>
     <string name="fifth_chip">Chip 5</string>
@@ -41,9 +41,15 @@
     <string name="start">Start</string>
 
     <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Morbi lobortis tortor enim, sed mattis turpis tempus non. Integer a sapien egestas, sodales
-        elit a, volutpat erat. Nullam aliquam nisi mauris, non tincidunt nulla convallis ac. Cras
-        nec est vitae arcu auctor dictum. Donec eleifend sagittis sapien, a maximus libero mollis
-        in. Nam maximus massa lectus, nec accumsan eros molestie ut. Vestibulum dui velit, rutrum
+        Morbi lobortis tortor enim, sed mattis kopert turpis koloss tempus non. Integer a sapien egestas, sodales
+        elit a, volutpat erat. Nullam aliquam nisi mauris, non kren kort tincidunt nulla convallis ac. Cras
+        nec est vitae arcu auctor dictum. Donec nogon eleifend elon sagittis kagan kotan sapien, a maximus libero mollis
+        in. Nam maximus massa lectus, nec kotlin kebany ketan accumsan eros molestie niggel kilerum ut. Vestibulum dui velit, rutrum
         vel hendrerit eget, condimentum non augue. </string>
+    <string name="ok">OK</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="enter_your_name_here">Enter your name here</string>
+    <string name="contain_letter_l">Contain letter L</string>
+    <string name="kotlin">Kotlin</string>
+
 </resources>

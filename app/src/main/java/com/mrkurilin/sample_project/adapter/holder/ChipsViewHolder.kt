@@ -1,6 +1,8 @@
 package com.mrkurilin.sample_project.adapter.holder
 
 import android.view.View
+import android.widget.CompoundButton
+import android.widget.TextView
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
@@ -8,11 +10,63 @@ import com.google.android.material.chip.ChipGroup
 import com.mrkurilin.sample_project.R
 
 class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+    private val chipGroup: ChipGroup = view.findViewById(R.id.chipgroup_chips_widget)
+    private val textView: TextView = view.findViewById(R.id.textview_chip_widget)
+    private val sourceArray = getSourceStringArray()
+    private var arrayToShow = sourceArray
+
     init {
-        view.findViewById<ChipGroup>(R.id.chipgroup_chips_widget).children.forEach { child ->
-            (child as Chip).setOnCloseIconClickListener {
-                child.visibility = View.GONE
+        textView.text = arrayToShow.joinToString("\n")
+        chipGroup.children.forEach {
+            (it as Chip).setOnCheckedChangeListener(getListener())
+        }
+    }
+
+    private fun getListener(): CompoundButton.OnCheckedChangeListener {
+        return CompoundButton.OnCheckedChangeListener { checkedChip, isChecked ->
+            arrayToShow = sourceArray
+            if (!isChecked && chipGroup.checkedChipIds.size == 1) {
+                textView.text = arrayToShow.joinToString("\n")
+                return@OnCheckedChangeListener
+            } else {
+                if (isChecked) {
+                    updateText(checkedChip.id)
+                }
+                chipGroup.checkedChipIds.forEach { checkedChipId ->
+                    if (checkedChipId != checkedChip.id) {
+                        updateText(checkedChipId)
+                    }
+                }
             }
         }
+    }
+
+    private fun getSourceStringArray(): List<String> {
+        return itemView.resources.getString(R.string.lipsum)
+            .uppercase()
+            .replace(".", "")
+            .replace(",", "")
+            .split(" ")
+            .toMutableSet()
+            .sorted()
+    }
+
+    private fun updateText(chipId: Int = 0) {
+        when (chipId) {
+            R.id.chip_kword_chips_widget -> {
+                arrayToShow = arrayToShow.filter { it.startsWith("K") }
+            }
+            R.id.chip_nend_word_chip_widget -> {
+                arrayToShow = arrayToShow.filter { it.endsWith("N") }
+            }
+            R.id.chip_tcontain_word_chip_widget -> {
+                arrayToShow = arrayToShow.filter { it.contains("L") }
+            }
+            R.id.chip_kotlin_word_chip_widget -> {
+                arrayToShow = mutableListOf("KOTLIN")
+            }
+        }
+        textView.text = arrayToShow.joinToString("\n")
     }
 }

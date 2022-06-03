@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 
-private const val DEFAULT_TIMER_DURATION = 15000L
+private const val DEFAULT_TIMER_DURATION = 1500L
 private const val DEFAULT_FINISH_TIME = 0L
 
 class ProgressBarViewHolder(view: View) : RecyclerView.ViewHolder(view) {

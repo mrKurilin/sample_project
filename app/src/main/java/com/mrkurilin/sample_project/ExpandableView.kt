@@ -2,10 +2,10 @@ package com.mrkurilin.sample_project
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.core.view.isVisible
 
@@ -13,14 +13,15 @@ class ExpandableView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-) : ConstraintLayout(context, attrs, defStyleAttr) {
+) : LinearLayout(context, attrs, defStyleAttr) {
 
     private val toggleButton: Button
     private var isContentVisible = false
 
     init {
         View.inflate(context, R.layout.view_expandable_layout, this)
-
+        orientation = VERTICAL
+        gravity = Gravity.CENTER
 
         toggleButton = findViewById(R.id.button_expandable_view)
         toggleButton.setOnClickListener {

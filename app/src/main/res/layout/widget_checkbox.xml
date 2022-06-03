@@ -7,44 +7,43 @@
     app:toggleButtonText="@string/check_boxes">
 
     <LinearLayout
-        android:id="@+id/expandable_layout_checkbox_widget"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_expandable_view">
+        android:visibility="gone">
 
-        <CheckBox
-            android:id="@+id/checkbox_red_checkbox_widget"
+        <LinearLayout
+            android:id="@+id/linearlayout_checkbox_widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/red" />
+            android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/checkbox_green_checkbox_widget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/green" />
+            <CheckBox
+                android:id="@+id/checkbox_red_checkbox_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/red" />
 
-        <CheckBox
-            android:id="@+id/checkbox_blue_checkbox_widget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/blue" />
+            <CheckBox
+                android:id="@+id/checkbox_green_checkbox_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/green" />
+
+            <CheckBox
+                android:id="@+id/checkbox_blue_checkbox_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/blue" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_checkbox_widget"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:background="@color/black" />
 
     </LinearLayout>
-
-    <View
-        android:id="@+id/view_checkbox_widget"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:background="@color/black"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/expandable_layout_checkbox_widget"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/expandable_layout_checkbox_widget"
-        app:layout_constraintTop_toBottomOf="@+id/button_expandable_view" />
 
 </com.mrkurilin.sample_project.ExpandableView>

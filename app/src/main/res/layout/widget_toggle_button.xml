@@ -8,12 +8,9 @@
     <androidx.appcompat.widget.AppCompatToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:textAllCaps="false"
         android:textOff="@string/textoff"
         android:textOn="@string/texton"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/button_expandable_view"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:visibility="gone" />
 
 </com.mrkurilin.sample_project.ExpandableView>

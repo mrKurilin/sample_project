@@ -11,9 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_expandable_view">
+        android:visibility="gone">
 
         <Button
             android:id="@+id/button_start_progressbar_widget"

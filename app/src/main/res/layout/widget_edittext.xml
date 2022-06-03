@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.mrkurilin.sample_project.ExpandableView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:toggleButtonText="@string/edittext">
 
     <EditText
-        android:id="@+id/edittext_edittext_widget"
+        android:id="@+id/edittext_name_edittext_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
+        android:autofillHints="Name"
+        android:hint="@string/enter_your_name_here"
+        android:inputType="textPersonName"
         android:maxLength="20"
-        android:hint="@string/enter_text_here"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_expandable_view"/>
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/edttext_number_edittext_widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="7(123)4567890"
+        android:hint="@string/enter_your_phone_number"
+        android:inputType="number"
+        android:maxLength="12"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/button_ok_edittext_widget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        android:visibility="gone" />
 
 </com.mrkurilin.sample_project.ExpandableView>
