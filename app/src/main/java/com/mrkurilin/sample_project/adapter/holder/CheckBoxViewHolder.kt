@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.view.View
 import android.widget.CheckBox
 import android.widget.CompoundButton
+import android.widget.LinearLayout
+import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 
@@ -12,7 +14,7 @@ class CheckBoxViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private var redColor = 0
     private var greenColor = 0
     private var blueColor = 0
-    private val viewColor = view.findViewById<View>(R.id.view_checkbox_widget)
+    private val viewToChangeColor = view.findViewById<View>(R.id.view_checkbox_widget)
 
     private val listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
         when (buttonView.id) {
@@ -24,12 +26,9 @@ class CheckBoxViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     init {
-        view.findViewById<CheckBox>(R.id.checkbox_red_checkbox_widget)
-            .setOnCheckedChangeListener(listener)
-        view.findViewById<CheckBox>(R.id.checkbox_green_checkbox_widget)
-            .setOnCheckedChangeListener(listener)
-        view.findViewById<CheckBox>(R.id.checkbox_blue_checkbox_widget)
-            .setOnCheckedChangeListener(listener)
+        view.findViewById<LinearLayout>(R.id.linearlayout_checkbox_widget).children.forEach {
+            (it as CheckBox).setOnCheckedChangeListener(listener)
+        }
     }
 
     private fun getColorInt(isChecked: Boolean): Int {
@@ -41,6 +40,6 @@ class CheckBoxViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun updateViewColor() {
-        viewColor.setBackgroundColor(Color.rgb(redColor, greenColor, blueColor))
+        viewToChangeColor.setBackgroundColor(Color.rgb(redColor, greenColor, blueColor))
     }
 }

@@ -30,7 +30,7 @@ class ExpandableView @JvmOverloads constructor(
         initializeAttributes(attrs)
     }
 
-    fun initializeAttributes(attrs: AttributeSet?) {
+    private fun initializeAttributes(attrs: AttributeSet?) {
         if (attrs == null) {
             return
         }

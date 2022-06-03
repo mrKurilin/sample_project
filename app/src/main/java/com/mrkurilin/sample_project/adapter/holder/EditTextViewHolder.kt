@@ -12,32 +12,28 @@ const val EMPTY_DATA_TEXT = "Enter information!"
 class EditTextViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val nameEditText: EditText = view.findViewById(R.id.edittext_name_edittext_widget)
-    private val numberEditText: EditText = view.findViewById(R.id.edttext_number_edittext_widget)
+    private val numberEditText: EditText = view.findViewById(R.id.edittext_number_edittext_widget)
     private val okButton: Button = view.findViewById(R.id.button_ok_edittext_widget)
 
     init {
         okButton.setOnClickListener {
-            okPressed()
-        }
-    }
+            val nameEntered = nameEditText.text.isNotEmpty()
+            val numberEntered = numberEditText.text.length == 11
+            if (nameEntered && numberEntered) {
+                val nameText = nameEditText.text.toString()
+                val numText = numberEditText.text.toString()
+                sendToast(
+                    "Спасибо, $nameText! С вашего номера $numText будет списано 15,000 рублей!"
+                )
+            } else {
+                sendToast(EMPTY_DATA_TEXT)
 
-    private fun okPressed() {
-        val nameEntered = nameEditText.text.isNotEmpty()
-        val numberEntered = numberEditText.text.length == 11
-        if (nameEntered && numberEntered) {
-            val nameText = nameEditText.text.toString()
-            val numText = numberEditText.text.toString()
-            sendToast(
-                "Спасибо, $nameText! С вашего номера $numText будет списано 15,000 рублей!"
-            )
-        } else {
-            sendToast(EMPTY_DATA_TEXT)
-
-            if (!nameEntered) {
-                nameEditText.error = "Enter your name here"
-            }
-            if (!numberEntered) {
-                numberEditText.error = "Enter the number in 11-character format"
+                if (!nameEntered) {
+                    nameEditText.error = "Enter your name here"
+                }
+                if (!numberEntered) {
+                    numberEditText.error = "Enter the number in 11-character format"
+                }
             }
         }
     }
@@ -46,4 +42,3 @@ class EditTextViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         Toast.makeText(itemView.context, text, Toast.LENGTH_LONG).show()
     }
 }
-

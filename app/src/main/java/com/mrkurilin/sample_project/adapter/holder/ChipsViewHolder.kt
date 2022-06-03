@@ -24,18 +24,20 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun getListener(): CompoundButton.OnCheckedChangeListener {
-        return CompoundButton.OnCheckedChangeListener { checkedChip, isChecked ->
-            arrayToShow = sourceArray
-            if (!isChecked && chipGroup.checkedChipIds.size == 1) {
-                textView.text = arrayToShow.joinToString("\n")
-                return@OnCheckedChangeListener
-            } else {
-                if (isChecked) {
-                    updateText(checkedChip.id)
-                }
-                chipGroup.checkedChipIds.forEach { checkedChipId ->
-                    if (checkedChipId != checkedChip.id) {
-                        updateText(checkedChipId)
+        return object : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+                arrayToShow = sourceArray
+                if (!isChecked && chipGroup.checkedChipIds.size == 1) {
+                    textView.text = arrayToShow.joinToString("\n")
+                    return
+                } else {
+                    if (isChecked) {
+                        updateText(buttonView!!.id)
+                    }
+                    chipGroup.checkedChipIds.forEach { checkedChipId ->
+                        if (checkedChipId != buttonView!!.id) {
+                            updateText(checkedChipId)
+                        }
                     }
                 }
             }
