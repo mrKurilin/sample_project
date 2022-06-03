@@ -20,8 +20,8 @@ class EditTextViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val nameEntered = nameEditText.text.isNotEmpty()
             val numberEntered = numberEditText.text.length == 11
             if (nameEntered && numberEntered) {
-                val nameText = nameEditText.text.toString()
-                val numText = numberEditText.text.toString()
+                val nameText = nameEditText.text
+                val numText = numberEditText.text
                 sendToast(
                     "Спасибо, $nameText! С вашего номера $numText будет списано 15,000 рублей!"
                 )

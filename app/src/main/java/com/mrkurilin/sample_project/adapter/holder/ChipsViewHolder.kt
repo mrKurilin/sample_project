@@ -13,36 +13,36 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val chipGroup: ChipGroup = view.findViewById(R.id.chipgroup_chips_widget)
     private val textView: TextView = view.findViewById(R.id.textview_chip_widget)
-    private val sourceArray = getSourceStringArray()
-    private var arrayToShow = sourceArray
+    private val initialWordsArray = getSourceStringArray()
+    private var arrayToShow = initialWordsArray
+    private val listener by lazy {createListener()}
 
     init {
         textView.text = arrayToShow.joinToString("\n")
         chipGroup.children.forEach {
-            (it as Chip).setOnCheckedChangeListener(getListener())
+            (it as Chip).setOnCheckedChangeListener(listener)
         }
     }
 
-    private fun getListener(): CompoundButton.OnCheckedChangeListener {
-        return object : CompoundButton.OnCheckedChangeListener {
-            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-                arrayToShow = sourceArray
+    private fun createListener(): CompoundButton.OnCheckedChangeListener {
+        return CompoundButton.OnCheckedChangeListener {buttonView, isChecked ->
+            arrayToShow = initialWordsArray
                 if (!isChecked && chipGroup.checkedChipIds.size == 1) {
                     textView.text = arrayToShow.joinToString("\n")
-                    return
+                    return@OnCheckedChangeListener
                 } else {
                     if (isChecked) {
-                        updateText(buttonView!!.id)
+                        updateText(buttonView.id)
                     }
                     chipGroup.checkedChipIds.forEach { checkedChipId ->
-                        if (checkedChipId != buttonView!!.id) {
+                        if (checkedChipId != buttonView.id) {
                             updateText(checkedChipId)
                         }
                     }
                 }
             }
         }
-    }
+
 
     private fun getSourceStringArray(): List<String> {
         return itemView.resources.getString(R.string.lipsum)
@@ -54,16 +54,16 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             .sorted()
     }
 
-    private fun updateText(chipId: Int = 0) {
+    private fun updateText(chipId: Int) {
         when (chipId) {
             R.id.chip_kword_chips_widget -> {
-                arrayToShow = arrayToShow.filter { it.startsWith("K") }
+                arrayToShow = arrayToShow.filter { word -> word.startsWith("K") }
             }
             R.id.chip_nend_word_chip_widget -> {
-                arrayToShow = arrayToShow.filter { it.endsWith("N") }
+                arrayToShow = arrayToShow.filter { word -> word.endsWith("N") }
             }
             R.id.chip_tcontain_word_chip_widget -> {
-                arrayToShow = arrayToShow.filter { it.contains("L") }
+                arrayToShow = arrayToShow.filter { word -> word.contains("L") }
             }
             R.id.chip_kotlin_word_chip_widget -> {
                 arrayToShow = mutableListOf("KOTLIN")
