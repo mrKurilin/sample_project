@@ -12,7 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    lateinit var drawerLayout: DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val itemId = item.itemId
+        drawerLayout.closeDrawer(GravityCompat.START)
 
         when (itemId) {
             R.id.navigation_widgets -> {
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             else -> throw IllegalArgumentException("Unknown menu item")
         }
-        drawerLayout.closeDrawer(GravityCompat.START)
+
         return true
     }
 }

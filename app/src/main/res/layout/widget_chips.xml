@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mrkurilin.sample_project.ExpandableView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:toggleButtonText="@string/chips">
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipgroup_chips_widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_kword_chips_widget"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/starts_with_k"
+            app:chipIcon="@drawable/ic_launcher_foreground" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_nend_word_chip_widget"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end_with_n"
+            app:chipIcon="@drawable/ic_launcher_foreground" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_tcontain_word_chip_widget"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contain_letter_l"
+            app:chipIcon="@drawable/ic_launcher_foreground" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_kotlin_word_chip_widget"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kotlin"
+            app:chipIcon="@drawable/ic_launcher_foreground" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/textview_chip_widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone" />
+
+</com.mrkurilin.sample_project.ExpandableView>

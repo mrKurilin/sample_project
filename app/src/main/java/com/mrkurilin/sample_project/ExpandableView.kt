@@ -2,6 +2,7 @@ package com.mrkurilin.sample_project
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -20,6 +21,7 @@ class ExpandableView @JvmOverloads constructor(
     init {
         View.inflate(context, R.layout.view_expandable_layout, this)
         orientation = VERTICAL
+        gravity = Gravity.CENTER
 
         toggleButton = findViewById(R.id.button_expandable_view)
         toggleButton.setOnClickListener {
@@ -28,7 +30,7 @@ class ExpandableView @JvmOverloads constructor(
         initializeAttributes(attrs)
     }
 
-    fun initializeAttributes(attrs: AttributeSet?) {
+    private fun initializeAttributes(attrs: AttributeSet?) {
         if (attrs == null) {
             return
         }

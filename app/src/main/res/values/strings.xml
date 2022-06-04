@@ -1,31 +1,55 @@
 <resources>
     <string name="app_name">sample_project</string>
-    <string name="navigation_menu_header_image">navigation_menu_header_image</string>
+
     <string name="navigation_widgets">Widgets</string>
-    <string name="navigation_support">Support</string>
     <string name="navigation_SQL">SQL</string>
-    <string name="navigation_feedback">Give me feedback</string>
+
+    <string name="navigation_menu_header_image">navigation_menu_header_image</string>
     <string name="open_navigation_drawer">Open navigation drawer</string>
     <string name="close_navigation_drawer">Close navigation drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="autocomplete_textview">Autocomplete Textview</string>
     <string name="check_boxes">Check Boxes</string>
-    <string name="first_checkbox">First checkbox</string>
-    <string name="second_checkbox">Second checkbox</string>
-    <string name="textview">TextView</string>
-    <string name="ai">РАЗ РАЗ РАЗ проверка связи</string>
-    <string name="first_radio_button">First Radio Button</string>
-    <string name="second_radio_button">Second Radio Button</string>
-    <string name="third_radio_button">Third Radio Button</string>
-    <string name="third_checkbox">Third Checkbox</string>
+    <string name="chips">Chips</string>
+    <string name="edittext">EditText</string>
+    <string name="progressbar">Progress Bar</string>
     <string name="radio_button">Radio Button</string>
     <string name="rating_bar">Rating Bar</string>
+    <string name="seekbar">SeekBar</string>
+    <string name="spinner">Spinner</string>
     <string name="switcher">Switch</string>
+    <string name="textview">TextView</string>
+    <string name="togglebutton">Toggle Button</string>
+
     <string name="switchertext">Switcher</string>
     <string name="enter_text_here">Enter text here</string>
-    <string name="edittext">EditText</string>
-    <string name="spinner">Spinner</string>
-    <string name="autocomplete_textview">Autocomplete Textview</string>
-    <string name="seekbar">SeekBar</string>
     <string name="_0">0</string>
+
+    <string name="texton">textOn</string>
+    <string name="textoff">textOff</string>
+
+    <string name="starts_with_k">Starts with letter K</string>
+    <string name="end_with_n">End with letter N</string>
+    <string name="third_chip">Chip 3</string>
+    <string name="fourth_chip">Chip 4</string>
+    <string name="fifth_chip">Chip 5</string>
+
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+
+    <string name="start">Start</string>
+
+    <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Morbi lobortis tortor enim, sed mattis kopert turpis koloss tempus non. Integer a sapien egestas, sodales
+        elit a, volutpat erat. Nullam aliquam nisi mauris, non kren kort tincidunt nulla convallis ac. Cras
+        nec est vitae arcu auctor dictum. Donec nogon eleifend elon sagittis kagan kotan sapien, a maximus libero mollis
+        in. Nam maximus massa lectus, nec kotlin kebany ketan accumsan eros molestie niggel kilerum ut. Vestibulum dui velit, rutrum
+        vel hendrerit eget, condimentum non augue. </string>
+    <string name="ok">OK</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="enter_your_name_here">Enter your name here</string>
+    <string name="contain_letter_l">Contain letter L</string>
+    <string name="kotlin">Kotlin</string>
+
 </resources>

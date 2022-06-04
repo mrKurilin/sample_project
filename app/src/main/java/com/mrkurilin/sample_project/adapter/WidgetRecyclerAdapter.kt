@@ -7,26 +7,32 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 import com.mrkurilin.sample_project.adapter.holder.*
 
-private const val CHECKBOX_VIEW_TYPE = 0
-private const val RADIOBUTTON_VIEW_TYPE = 1
-private const val TEXTVIEW_VIEW_TYPE = 2
-private const val RATINGBAR_VIEW_TYPE = 3
-private const val SWITCH_VIEW_TYPE = 4
-private const val EDITTEXT_VIEW_TYPE = 5
+private const val AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE = 0
+private const val CHECKBOX_VIEW_TYPE = 1
+private const val EDITTEXT_VIEW_TYPE = 2
+private const val RADIOBUTTON_VIEW_TYPE = 3
+private const val RATINGBAR_VIEW_TYPE = 4
+private const val SEEKBAR_VIEW_TYPE = 5
 private const val SPINNER_VIEW_TYPE = 6
-private const val AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE = 7
-private const val SEEKBAR_VIEW_TYPE = 8
+private const val SWITCH_VIEW_TYPE = 7
+private const val TEXTVIEW_VIEW_TYPE = 8
+private const val TOGGLE_BUTTON_VIEW_TYPE = 9
+private const val CHIPS_VIEW_TYPE = 10
+private const val PROGRESSBAR_VIEW_TYPE = 11
 
 private val viewTypes = arrayOf(
-    CHECKBOX_VIEW_TYPE,
-    RADIOBUTTON_VIEW_TYPE,
-    TEXTVIEW_VIEW_TYPE,
-    RATINGBAR_VIEW_TYPE,
-    SWITCH_VIEW_TYPE,
-    EDITTEXT_VIEW_TYPE,
-    SPINNER_VIEW_TYPE,
     AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE,
+    CHECKBOX_VIEW_TYPE,
+    CHIPS_VIEW_TYPE,
+    EDITTEXT_VIEW_TYPE,
+    PROGRESSBAR_VIEW_TYPE,
+    RADIOBUTTON_VIEW_TYPE,
+    RATINGBAR_VIEW_TYPE,
     SEEKBAR_VIEW_TYPE,
+    SPINNER_VIEW_TYPE,
+    SWITCH_VIEW_TYPE,
+    TEXTVIEW_VIEW_TYPE,
+    TOGGLE_BUTTON_VIEW_TYPE,
 )
 
 class WidgetRecyclerAdapter(
@@ -72,7 +78,18 @@ class WidgetRecyclerAdapter(
                 val view = inflater.inflate(R.layout.widget_seekbar, parent, false)
                 SeekBarViewHolder(view)
             }
-
+            TOGGLE_BUTTON_VIEW_TYPE -> {
+                val view = inflater.inflate(R.layout.widget_toggle_button, parent, false)
+                ToggleButtonViewHolder(view)
+            }
+            CHIPS_VIEW_TYPE -> {
+                val view = inflater.inflate(R.layout.widget_chips, parent, false)
+                ChipsViewHolder(view)
+            }
+            PROGRESSBAR_VIEW_TYPE -> {
+                val view = inflater.inflate(R.layout.widget_progressbar, parent, false)
+                ProgressBarViewHolder(view)
+            }
             else -> throw IllegalArgumentException("Wrong ViewType")
         }
     }
@@ -86,5 +103,17 @@ class WidgetRecyclerAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return viewTypes[position]
+    }
+
+    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
+        if (holder is ProgressBarViewHolder) {
+            holder.onViewAttachedToWindow()
+        }
+    }
+
+    override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
+        if (holder is ProgressBarViewHolder) {
+            holder.onViewDetachedFromWindow()
+        }
     }
 }
