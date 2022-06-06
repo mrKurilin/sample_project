@@ -23,12 +23,12 @@ class SeekBarViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         blueSeekBar.setOnSeekBarChangeListener(onSeekBarChangeListener)
     }
 
-    private fun createOnSeekBarChangeListener() : SeekBar.OnSeekBarChangeListener{
-        return object : SeekBar.OnSeekBarChangeListener{
+    private fun createOnSeekBarChangeListener(): SeekBar.OnSeekBarChangeListener {
+        return object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 when (seekBar) {
-                    redSeekBar-> {
+                    redSeekBar -> {
                         redColor = progress
                     }
                     greenSeekBar -> {

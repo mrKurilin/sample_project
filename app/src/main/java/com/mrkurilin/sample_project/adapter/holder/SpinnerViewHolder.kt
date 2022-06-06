@@ -55,7 +55,9 @@ class SpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 id: Long
             ) {
                 when (parent) {
-                    spinnerColor -> setImageViewBackgroundColor()
+                    spinnerColor -> {
+                        setImageViewBackgroundColor()
+                    }
                     spinnerShape -> {
                         imageView.background = ContextCompat.getDrawable(
                             view.context,
@@ -63,13 +65,15 @@ class SpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                         )
                         setImageViewBackgroundColor()
                     }
-                    spinnerContent -> imageView.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            view.context,
-                            contentMap[parent.selectedItem.toString()]
-                                ?: R.drawable.ic_baseline_android_24
+                    spinnerContent -> {
+                        imageView.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                view.context,
+                                contentMap[parent.selectedItem.toString()]
+                                    ?: R.drawable.ic_baseline_android_24
+                            )
                         )
-                    )
+                    }
                 }
             }
 
@@ -78,12 +82,14 @@ class SpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun setImageViewBackgroundColor() {
+        val colorId = colorMap[spinnerColor.selectedItem.toString()]
+            ?: throw IllegalArgumentException("Color error")
+
+        val tint = ContextCompat.getColor(spinnerColor.context, colorId)
+
         DrawableCompat.setTint(
             imageView.background,
-            ContextCompat.getColor(
-                spinnerColor.context,
-                colorMap[spinnerColor.selectedItem.toString()] ?: R.color.red
-            )
+            tint
         )
     }
 
