@@ -5,11 +5,53 @@
     android:layout_height="wrap_content"
     app:toggleButtonText="@string/spinner">
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_spinner_widget"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_spinner_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/spinner_array"
-        android:visibility="gone" />
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_shape_spinner_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/imageview_spinner_widget"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageview_spinner_widget" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_color_spinner_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/spinner_content_spinner_widget"
+            app:layout_constraintEnd_toStartOf="@id/imageview_spinner_widget"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner_shape_spinner_widget" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_content_spinner_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/imageview_spinner_widget"
+            app:layout_constraintEnd_toStartOf="@id/imageview_spinner_widget"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageview_spinner_widget"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/circle"
+            android:contentDescription="@string/spinner_widget_content"
+            android:padding="26dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_android_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.mrkurilin.sample_project.ExpandableView>
