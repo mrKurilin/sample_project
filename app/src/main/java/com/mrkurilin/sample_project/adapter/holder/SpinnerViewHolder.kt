@@ -55,25 +55,9 @@ class SpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 id: Long
             ) {
                 when (parent) {
-                    spinnerColor -> {
-                        setImageViewBackgroundColor()
-                    }
-                    spinnerShape -> {
-                        imageView.background = ContextCompat.getDrawable(
-                            view.context,
-                            shapeMap[parent.selectedItem.toString()] ?: R.drawable.rectangle
-                        )
-                        setImageViewBackgroundColor()
-                    }
-                    spinnerContent -> {
-                        imageView.setImageDrawable(
-                            ContextCompat.getDrawable(
-                                view.context,
-                                contentMap[parent.selectedItem.toString()]
-                                    ?: R.drawable.ic_baseline_android_24
-                            )
-                        )
-                    }
+                    spinnerColor -> setImageViewBackgroundColor()
+                    spinnerShape -> setImageViewBackgroundShape()
+                    spinnerContent -> setImageViewContent()
                 }
             }
 
@@ -82,11 +66,8 @@ class SpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun setImageViewBackgroundColor() {
-        val colorId = colorMap[spinnerColor.selectedItem.toString()]
-            ?: throw IllegalArgumentException("Color error")
-
+        val colorId = colorMap.getValue(spinnerColor.selectedItem.toString())
         val tint = ContextCompat.getColor(spinnerColor.context, colorId)
-
         DrawableCompat.setTint(
             imageView.background,
             tint
@@ -99,5 +80,18 @@ class SpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             android.R.layout.simple_spinner_dropdown_item,
             map.keys.toTypedArray()
         )
+    }
+
+    private fun setImageViewBackgroundShape() {
+        val drawableId = shapeMap.getValue(spinnerShape.selectedItem.toString())
+        val backgroundDrawable = ContextCompat.getDrawable(itemView.context, drawableId)
+        imageView.background = backgroundDrawable
+        setImageViewBackgroundColor()
+    }
+
+    private fun setImageViewContent() {
+        val contentDrawableId = contentMap.getValue(spinnerContent.selectedItem.toString())
+        val contentDrawable = ContextCompat.getDrawable(itemView.context, contentDrawableId)
+        imageView.setImageDrawable(contentDrawable)
     }
 }
