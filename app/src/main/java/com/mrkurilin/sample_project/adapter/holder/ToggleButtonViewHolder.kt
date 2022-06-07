@@ -22,13 +22,17 @@ class ToggleButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         R.id.toggle_button_background_toggle_button_widget
     )
 
-    private val circle = ContextCompat.getDrawable(view.context, R.drawable.circle)
-    private val rectangle = ContextCompat.getDrawable(view.context, R.drawable.rectangle)
+    private val circleDrawable = ContextCompat.getDrawable(view.context, R.drawable.circle)
+    private val rectangleDrawable = ContextCompat.getDrawable(view.context, R.drawable.rectangle)
 
-    private val imageView: ImageView = view.findViewById(R.id.imageview_toggle_button_widget)
-    private val textView: TextView = view.findViewById(R.id.textview_toggle_button_widget)
+    private val imageViewToggleButtonWidget: ImageView = view.findViewById(
+        R.id.imageview_toggle_button_widget
+    )
+    private val textViewToggleButtonWIdget: TextView = view.findViewById(
+        R.id.textview_toggle_button_widget
+    )
 
-    private val onCheckedChangeListener by lazy { getOnChangeCheckedListener() }
+    private val onCheckedChangeListener by lazy { createOnCheckedChangeListener() }
 
     init {
         textToggleButton.setOnCheckedChangeListener(onCheckedChangeListener)
@@ -36,7 +40,7 @@ class ToggleButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         backgroundToggleButton.setOnCheckedChangeListener(onCheckedChangeListener)
     }
 
-    private fun getOnChangeCheckedListener(): CompoundButton.OnCheckedChangeListener {
+    private fun createOnCheckedChangeListener(): CompoundButton.OnCheckedChangeListener {
         return CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             when (buttonView) {
                 textToggleButton -> setTextColor(isChecked)
@@ -47,7 +51,7 @@ class ToggleButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun setTextColor(checked: Boolean) {
-        textView.setTextColor(
+        textViewToggleButtonWIdget.setTextColor(
             if (checked) {
                 Color.BLACK
             } else {
@@ -57,7 +61,7 @@ class ToggleButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun setContent(checked: Boolean) {
-        imageView.setImageResource(
+        imageViewToggleButtonWidget.setImageResource(
             if (checked) {
                 R.drawable.ic_baseline_self_improvement_24
             } else {
@@ -67,6 +71,11 @@ class ToggleButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun setImageViewBackground(checked: Boolean) {
-        imageView.background = if (checked) circle else rectangle
+        imageViewToggleButtonWidget.background =
+            if (checked) {
+                circleDrawable
+            } else {
+                rectangleDrawable
+            }
     }
 }

@@ -1,51 +1,87 @@
 package com.mrkurilin.sample_project.adapter.holder
 
+import android.Manifest
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothManager
+import android.content.Context
+import android.content.pm.PackageManager
+import android.net.wifi.WifiManager
+import android.provider.Settings
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 
 class SwitchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val switchWifi: SwitchCompat = view.findViewById(R.id.switch_wifi_switch_widget)
-    private val switchBluetooth: SwitchCompat = view.findViewById(R.id.switch_bluetooth_switch_widget)
-    private val switchAirplaneMode: SwitchCompat = view.findViewById(R.id.switch_airplane_mode_switch_widget)
-    private val onCheckedChangeListener: CompoundButton.OnCheckedChangeListener by lazy { getOnChangeCheckedListener() }
+    private val wifiSwitch: SwitchCompat = view.findViewById(R.id.switch_wifi_switch_widget)
+    private val bluetoothSwitch: SwitchCompat = view.findViewById(
+        R.id.switch_bluetooth_switch_widget
+    )
+
+    private val onCheckedChangeListener by lazy { createOnCheckedChangeListener() }
+
+    private val wifiStateOn = view.resources.getString(R.string.wifi_on)
+    private val wifiStateOff = view.resources.getString(R.string.wifi_off)
+    private val bluetoothStateOn = view.resources.getString(R.string.bluetooth_on)
+    private val bluetoothStateOff = view.resources.getString(R.string.bluetooth_off)
+
+    private val wifiManager = view.context.applicationContext.getSystemService(
+        Context.WIFI_SERVICE
+    ) as WifiManager
+
+    private val bluetoothManager = view.context.applicationContext.getSystemService(
+        Context.BLUETOOTH_SERVICE
+    ) as BluetoothManager
+    private val bluetoothAdapter = bluetoothManager.adapter
 
     init {
-        switchWifi.setOnCheckedChangeListener(onCheckedChangeListener)
-        switchBluetooth.setOnCheckedChangeListener(onCheckedChangeListener)
-        switchAirplaneMode.setOnCheckedChangeListener(onCheckedChangeListener)
+
+        wifiSwitch.isChecked = wifiManager.isWifiEnabled
+        bluetoothSwitch.isChecked = bluetoothAdapter.isEnabled
+
+        wifiSwitch.setOnCheckedChangeListener(onCheckedChangeListener)
+        bluetoothSwitch.setOnCheckedChangeListener(onCheckedChangeListener)
     }
 
-    private fun getOnChangeCheckedListener(): CompoundButton.OnCheckedChangeListener{
-        return CompoundButton.OnCheckedChangeListener{ buttonView, isChecked ->
+    private fun createOnCheckedChangeListener(): CompoundButton.OnCheckedChangeListener {
+        return CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             when (buttonView) {
-                switchWifi -> showWifiState(isChecked)
-                switchBluetooth -> showBluetoothState(isChecked)
-                switchAirplaneMode -> showAirplaneModeState(isChecked)
+                wifiSwitch -> showWifiState(isChecked)
+                bluetoothSwitch -> showBluetoothState(isChecked)
             }
         }
     }
 
     private fun showWifiState(isChecked: Boolean) {
-        var wifiState = "Wifi: "
-        wifiState += if (isChecked) "On" else "Off"
-        sendToast(wifiState)
+        wifiManager.isWifiEnabled = isChecked
+        if (isChecked) {
+            sendToast(wifiStateOn)
+        } else {
+            sendToast(wifiStateOff)
+        }
     }
 
     private fun showBluetoothState(isChecked: Boolean) {
-        var bluetoothState = "Bluetooth: "
-        bluetoothState += if (isChecked) "On" else "Off"
-        sendToast(bluetoothState)
-    }
+        if (ActivityCompat.checkSelfPermission(
+                itemView.context,
+                Manifest.permission.BLUETOOTH_CONNECT
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (isChecked) {
+                bluetoothAdapter.enable()
+                sendToast(bluetoothStateOn)
+            } else {
+                bluetoothAdapter.disable()
+                sendToast(bluetoothStateOff)
+            }
+        } else {
+            sendToast("Permission denied")
+        }
 
-    private fun showAirplaneModeState(isChecked: Boolean) {
-        var airplaneModeState = "Airplane mode: "
-        airplaneModeState += if (isChecked) "On" else "Off"
-        sendToast(airplaneModeState)
     }
 
     private fun sendToast(text: String) {

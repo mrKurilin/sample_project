@@ -58,4 +58,12 @@
     <string name="bluetooth">Bluetooth</string>
     <string name="airplane_mode">Airplane mode</string>
 
+    <string name="wifi_on">Wifi: On</string>
+    <string name="bluetooth_on">Bluetooth: On</string>
+    <string name="airplane_mode_on">Airplane mode: On</string>
+    <string name="wifi_off">Wifi: Off</string>
+    <string name="bluetooth_off">Bluetooth: Off</string>
+    <string name="airplane_mode_off">Airplane mode: Off</string>
+
+
 </resources>
