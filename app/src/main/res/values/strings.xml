@@ -25,9 +25,6 @@
     <string name="enter_text_here">Enter text here</string>
     <string name="_0">0</string>
 
-    <string name="texton">textOn</string>
-    <string name="textoff">textOff</string>
-
     <string name="starts_with_k">Starts with letter K</string>
     <string name="end_with_n">End with letter N</string>
     <string name="contain_letter_l">Contain letter L</string>
@@ -49,5 +46,13 @@
     <string name="enter_your_name_here">Enter your name here</string>
     <string name="kotlin">Kotlin</string>
     <string name="spinner_widget_content">spinner_widget_content</string>
+    <string name="keep_calm_and_code_on">Keep calm and code on</string>
+    <string name="toggle_button_widget_s_imageview">Toggle button widget\'s imageview</string>
+    <string name="background_off">Background: Off</string>
+    <string name="background_on">Background: On</string>
+    <string name="content_off">Content: Off</string>
+    <string name="content_on">Content: On</string>
+    <string name="text_off">Text: Off</string>
+    <string name="text_on">Text: On</string>
 
 </resources>
