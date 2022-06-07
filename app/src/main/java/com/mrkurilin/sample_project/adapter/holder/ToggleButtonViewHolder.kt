@@ -1,7 +1,6 @@
 package com.mrkurilin.sample_project.adapter.holder
 
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.ImageView
@@ -23,10 +22,10 @@ class ToggleButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         R.id.toggle_button_background_toggle_button_widget
     )
 
-    val circle = ContextCompat.getDrawable(view.context, R.drawable.circle)
-    val rectangle = ContextCompat.getDrawable(view.context, R.drawable.rectangle)
+    private val circle = ContextCompat.getDrawable(view.context, R.drawable.circle)
+    private val rectangle = ContextCompat.getDrawable(view.context, R.drawable.rectangle)
 
-    val imageView: ImageView = view.findViewById(R.id.imageview_toggle_button_widget)
+    private val imageView: ImageView = view.findViewById(R.id.imageview_toggle_button_widget)
     private val textView: TextView = view.findViewById(R.id.textview_toggle_button_widget)
 
     private val onCheckedChangeListener by lazy { getOnChangeCheckedListener() }
