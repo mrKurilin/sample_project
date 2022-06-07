@@ -30,9 +30,7 @@
 
     <string name="starts_with_k">Starts with letter K</string>
     <string name="end_with_n">End with letter N</string>
-    <string name="third_chip">Chip 3</string>
-    <string name="fourth_chip">Chip 4</string>
-    <string name="fifth_chip">Chip 5</string>
+    <string name="contain_letter_l">Contain letter L</string>
 
     <string name="red">Red</string>
     <string name="green">Green</string>
@@ -49,7 +47,7 @@
     <string name="ok">OK</string>
     <string name="enter_your_phone_number">Enter your phone number</string>
     <string name="enter_your_name_here">Enter your name here</string>
-    <string name="contain_letter_l">Contain letter L</string>
     <string name="kotlin">Kotlin</string>
+    <string name="spinner_widget_content">spinner_widget_content</string>
 
 </resources>

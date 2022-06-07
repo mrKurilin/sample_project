@@ -6,29 +6,88 @@
     android:layout_height="wrap_content"
     app:toggleButtonText="@string/seekbar">
 
-    <LinearLayout
-        android:id="@+id/linearlayout_seekbar_widget"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_seekbar_widget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/textview_seekbar_widget"
+            android:id="@+id/textview_red_seekbar_widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_0"
-            android:textSize="13sp" />
+            android:text="@string/red"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <SeekBar
-            android:id="@+id/seekbar_seekbar_widget"
+            android:id="@+id/seekbar_red_seekbar_widget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:max="100"
-            android:progress="0" />
+            android:max="255"
+            android:progress="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_red_seekbar_widget" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/textview_green_seekbar_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/green"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekbar_red_seekbar_widget" />
+
+        <SeekBar
+            android:id="@+id/seekbar_green_seekbar_widget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="255"
+            android:progress="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_green_seekbar_widget" />
+
+        <TextView
+            android:id="@+id/textview_blue_seekbar_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blue"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekbar_green_seekbar_widget" />
+
+        <SeekBar
+            android:id="@+id/seekbar_blue_seekbar_widget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="255"
+            android:progress="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_blue_seekbar_widget" />
+
+        <View
+            android:id="@+id/view_seekbar_widget"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="16dp"
+            android:background="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekbar_blue_seekbar_widget" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.mrkurilin.sample_project.ExpandableView>

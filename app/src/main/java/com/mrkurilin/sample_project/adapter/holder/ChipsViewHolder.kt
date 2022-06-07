@@ -15,7 +15,7 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val textView: TextView = view.findViewById(R.id.textview_chip_widget)
     private val initialWordsArray = getSourceStringArray()
     private var arrayToShow = initialWordsArray
-    private val listener by lazy {createListener()}
+    private val listener by lazy { createListener() }
 
     init {
         textView.text = arrayToShow.joinToString("\n")
@@ -25,24 +25,20 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun createListener(): CompoundButton.OnCheckedChangeListener {
-        return CompoundButton.OnCheckedChangeListener {buttonView, isChecked ->
-            arrayToShow = initialWordsArray
-                if (!isChecked && chipGroup.checkedChipIds.size == 1) {
-                    textView.text = arrayToShow.joinToString("\n")
-                    return@OnCheckedChangeListener
-                } else {
-                    if (isChecked) {
-                        updateText(buttonView.id)
-                    }
-                    chipGroup.checkedChipIds.forEach { checkedChipId ->
-                        if (checkedChipId != buttonView.id) {
-                            updateText(checkedChipId)
-                        }
+        return CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                updateText(buttonView.id)
+            } else {
+                arrayToShow = initialWordsArray
+                chipGroup.checkedChipIds.forEach { checkedChipId ->
+                    if (checkedChipId != buttonView.id) {
+                        updateText(checkedChipId)
                     }
                 }
             }
+            textView.text = arrayToShow.joinToString("\n")
         }
-
+    }
 
     private fun getSourceStringArray(): List<String> {
         return itemView.resources.getString(R.string.lipsum)
@@ -69,6 +65,5 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 arrayToShow = mutableListOf("KOTLIN")
             }
         }
-        textView.text = arrayToShow.joinToString("\n")
     }
 }
