@@ -54,5 +54,8 @@
     <string name="content_on">Content: On</string>
     <string name="text_off">Text: Off</string>
     <string name="text_on">Text: On</string>
+    <string name="wi_fi">Wi-fi</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="airplane_mode">Airplane mode</string>
 
 </resources>
