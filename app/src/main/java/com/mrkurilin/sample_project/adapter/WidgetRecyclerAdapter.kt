@@ -1,10 +1,12 @@
 package com.mrkurilin.sample_project.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
+import com.mrkurilin.sample_project.RecyclerViewFragment
 import com.mrkurilin.sample_project.adapter.holder.*
 
 private const val AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE = 0
@@ -35,9 +37,8 @@ private val viewTypes = arrayOf(
     TOGGLE_BUTTON_VIEW_TYPE,
 )
 
-class WidgetRecyclerAdapter(
-    context: Context
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WidgetRecyclerAdapter(context: Context, private val recyclerViewFragment: RecyclerViewFragment): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     private val inflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -60,7 +61,7 @@ class WidgetRecyclerAdapter(
             }
             SWITCH_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_switch, parent, false)
-                SwitchViewHolder(view)
+                SwitchViewHolder(view, recyclerViewFragment)
             }
             EDITTEXT_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_edittext, parent, false)
@@ -94,8 +95,7 @@ class WidgetRecyclerAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-    }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) { }
 
     override fun getItemCount(): Int {
         return viewTypes.size
