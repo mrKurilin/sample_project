@@ -1,6 +1,5 @@
 package com.mrkurilin.sample_project.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -37,7 +36,10 @@ private val viewTypes = arrayOf(
     TOGGLE_BUTTON_VIEW_TYPE,
 )
 
-class WidgetRecyclerAdapter(context: Context, private val recyclerViewFragment: RecyclerViewFragment): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WidgetRecyclerAdapter(
+    context: Context,
+    private val recyclerViewFragment: RecyclerViewFragment
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
 
@@ -72,7 +74,11 @@ class WidgetRecyclerAdapter(context: Context, private val recyclerViewFragment: 
                 SpinnerViewHolder(view)
             }
             AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE -> {
-                val view = inflater.inflate(R.layout.widget_autocomplete_textview, parent, false)
+                val view = inflater.inflate(
+                    R.layout.widget_autocomplete_textview,
+                    parent,
+                    false
+                )
                 AutocompleteViewHolder(view)
             }
             SEEKBAR_VIEW_TYPE -> {
@@ -95,7 +101,7 @@ class WidgetRecyclerAdapter(context: Context, private val recyclerViewFragment: 
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) { }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {}
 
     override fun getItemCount(): Int {
         return viewTypes.size

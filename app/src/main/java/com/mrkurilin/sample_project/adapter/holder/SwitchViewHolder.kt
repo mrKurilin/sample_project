@@ -42,7 +42,7 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
         recyclerViewFragment.switchViewHolder = this
 
         wifiSwitch.isChecked = wifiManager.isWifiEnabled
-//        bluetoothSwitch.isChecked = bluetoothAdapter.isEnabled
+        bluetoothSwitch.isChecked = bluetoothAdapter.isEnabled
 
         wifiSwitch.setOnClickListener(onClickListener)
         bluetoothSwitch.setOnClickListener(onClickListener)
