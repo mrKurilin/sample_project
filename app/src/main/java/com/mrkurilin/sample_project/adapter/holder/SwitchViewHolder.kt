@@ -64,6 +64,7 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
         } else {
             wifiManager.isWifiEnabled = !wifiManager.isWifiEnabled
             sendWifiToast()
+
         }
     }
 
