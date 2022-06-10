@@ -38,14 +38,11 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
     ) as BluetoothManager
     private val bluetoothAdapter = bluetoothManager.adapter
 
-    private var isWifiEnabled = wifiManager.isWifiEnabled
-
-
     init {
         recyclerViewFragment.switchViewHolder = this
 
-        wifiSwitch.isChecked = isWifiEnabled
-        bluetoothSwitch.isChecked = bluetoothAdapter.isEnabled
+        wifiSwitch.isChecked = wifiManager.isWifiEnabled
+//        bluetoothSwitch.isChecked = bluetoothAdapter.isEnabled
 
         wifiSwitch.setOnClickListener(onClickListener)
         bluetoothSwitch.setOnClickListener(onClickListener)
@@ -65,9 +62,8 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             recyclerViewFragment.launchWifiStateActivity()
         } else {
-            isWifiEnabled = wifiManager.isWifiEnabled
-            wifiSwitch.isChecked = !isWifiEnabled
-            wifiManager.isWifiEnabled = !isWifiEnabled
+            wifiManager.isWifiEnabled = !wifiManager.isWifiEnabled
+            sendWifiToast()
         }
     }
 
@@ -96,6 +92,10 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
 
     fun updateWifiSwitchState() {
         wifiSwitch.isChecked = wifiManager.isWifiEnabled
+        sendWifiToast()
+    }
+
+    private fun sendWifiToast(){
         if (wifiSwitch.isChecked) {
             sendToast(wifiStateOn)
         } else {
