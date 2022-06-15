@@ -33,12 +33,15 @@ class RecyclerViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_fragment)
+
         val linearLayoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = adapter
+
         adapter.setActivityLauncher {
             wifiStateActivityResultContractLauncher.launch(Any())
         }
+
+        recyclerView.adapter = adapter
         updateItems()
     }
 

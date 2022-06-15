@@ -12,11 +12,11 @@ class WifiStateActivityResultContract : ActivityResultContract<Any, Unit>() {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             Intent(Settings.Panel.ACTION_WIFI)
         } else {
-            throw IllegalArgumentException("Invoked ActivityResultContract.createIntent() " +
-                    "with Android version < Android.Q")
+            throw IllegalArgumentException(
+                "Invoked ActivityResultContract.createIntent() with Android version < Android.Q"
+            )
         }
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?) {
-    }
+    override fun parseResult(resultCode: Int, intent: Intent?) {}
 }

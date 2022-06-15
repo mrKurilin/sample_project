@@ -130,7 +130,7 @@ class WidgetRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.items = items
     }
 
-    fun setActivityLauncher(activityLauncher: () -> Unit) {
-        this.launchWifiStateActivity = activityLauncher
+    fun setActivityLauncher(launchWifiStateActivity: () -> Unit) {
+        this.launchWifiStateActivity = launchWifiStateActivity
     }
 }
