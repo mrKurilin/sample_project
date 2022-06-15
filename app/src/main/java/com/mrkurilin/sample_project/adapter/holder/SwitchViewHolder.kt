@@ -12,11 +12,11 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
-import com.mrkurilin.sample_project.RecyclerViewFragment
-import com.mrkurilin.sample_project.ui_model.SwitchUiModel
 
-class SwitchViewHolder(view: View, val launchWifiStateActivity: () -> Unit) :
-    RecyclerView.ViewHolder(view) {
+class SwitchViewHolder(
+    view: View,
+    private val launchWifiStateActivity: () -> Unit
+) : RecyclerView.ViewHolder(view) {
 
     private val wifiSwitch: SwitchCompat = view.findViewById(R.id.switch_wifi_switch_widget)
     private val bluetoothSwitch: SwitchCompat = view.findViewById(
@@ -89,7 +89,7 @@ class SwitchViewHolder(view: View, val launchWifiStateActivity: () -> Unit) :
         }
     }
 
-    private fun sendWifiToast(){
+    private fun sendWifiToast() {
         if (wifiSwitch.isChecked) {
             sendToast(wifiStateOn)
         } else {
@@ -101,7 +101,7 @@ class SwitchViewHolder(view: View, val launchWifiStateActivity: () -> Unit) :
         Toast.makeText(itemView.context, text, Toast.LENGTH_SHORT).show()
     }
 
-    fun bind(){
+    fun bind() {
         wifiSwitch.isChecked = wifiManager.isWifiEnabled
     }
 }

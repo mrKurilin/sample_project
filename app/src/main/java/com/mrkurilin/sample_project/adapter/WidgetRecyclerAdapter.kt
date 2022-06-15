@@ -24,7 +24,7 @@ class WidgetRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items = emptyList<RecyclerViewUiModel>()
 
-    private lateinit var activityLauncher: () -> Unit
+    private lateinit var launchWifiStateActivity: () -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -48,7 +48,7 @@ class WidgetRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             SWITCH_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_switch, parent, false)
-                SwitchViewHolder(view, activityLauncher)
+                SwitchViewHolder(view, launchWifiStateActivity)
             }
             EDITTEXT_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_edittext, parent, false)
@@ -131,6 +131,6 @@ class WidgetRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun setActivityLauncher(activityLauncher: () -> Unit) {
-        this.activityLauncher = activityLauncher
+        this.launchWifiStateActivity = activityLauncher
     }
 }
