@@ -1,11 +1,9 @@
 package com.mrkurilin.sample_project.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
-import com.mrkurilin.sample_project.RecyclerViewFragment
 import com.mrkurilin.sample_project.adapter.holder.*
 import com.mrkurilin.sample_project.ui_model.*
 
@@ -22,31 +20,15 @@ private const val TOGGLE_BUTTON_VIEW_TYPE = 9
 private const val CHIPS_VIEW_TYPE = 10
 private const val PROGRESSBAR_VIEW_TYPE = 11
 
-private val viewTypes = arrayOf(
-    AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE,
-    CHECKBOX_VIEW_TYPE,
-    CHIPS_VIEW_TYPE,
-    EDITTEXT_VIEW_TYPE,
-    PROGRESSBAR_VIEW_TYPE,
-    RADIOBUTTON_VIEW_TYPE,
-    RATINGBAR_VIEW_TYPE,
-    SEEKBAR_VIEW_TYPE,
-    SPINNER_VIEW_TYPE,
-    SWITCH_VIEW_TYPE,
-    TEXTVIEW_VIEW_TYPE,
-    TOGGLE_BUTTON_VIEW_TYPE,
-)
-
-class WidgetRecyclerAdapter(
-    context: Context,
-    private val recyclerViewFragment: RecyclerViewFragment
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WidgetRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items = emptyList<RecyclerViewUiModel>()
 
-    private val inflater = LayoutInflater.from(context)
+    private lateinit var activityLauncher: () -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+
         return when (viewType) {
             CHECKBOX_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_checkbox, parent, false)
@@ -66,7 +48,7 @@ class WidgetRecyclerAdapter(
             }
             SWITCH_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_switch, parent, false)
-                SwitchViewHolder(view, recyclerViewFragment)
+                SwitchViewHolder(view, activityLauncher)
             }
             EDITTEXT_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_edittext, parent, false)
@@ -104,7 +86,11 @@ class WidgetRecyclerAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {    }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is SwitchViewHolder -> holder.bind()
+        }
+    }
 
     override fun getItemCount(): Int {
         return items.size
@@ -142,5 +128,9 @@ class WidgetRecyclerAdapter(
 
     fun setItems(items: List<RecyclerViewUiModel>) {
         this.items = items
+    }
+
+    fun setActivityLauncher(activityLauncher: () -> Unit) {
+        this.activityLauncher = activityLauncher
     }
 }

@@ -1,7 +1,5 @@
 package com.mrkurilin.sample_project
 
-import android.content.Context
-import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,19 +15,11 @@ class RecyclerViewFragment : Fragment() {
     private val wifiStateActivityResultContract = WifiStateActivityResultContract()
     private val wifiStateActivityResultContractLauncher = registerForActivityResult(
         wifiStateActivityResultContract,
-    ){
+    ) {
         updateItems()
     }
 
-    private val wifiManager by lazy {
-        requireContext().applicationContext.getSystemService(
-            Context.WIFI_SERVICE
-        ) as WifiManager
-    }
-
-    private val adapter by lazy {
-        WidgetRecyclerAdapter(requireContext(), this)
-    }
+    private val adapter = WidgetRecyclerAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,18 +36,14 @@ class RecyclerViewFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = adapter
-
+        adapter.setActivityLauncher {
+            wifiStateActivityResultContractLauncher.launch(Any())
+        }
         updateItems()
     }
 
-    fun launchWifiStateActivity() {
-        wifiStateActivityResultContractLauncher.launch(Any())
-    }
-
-    private fun updateItems(){
-        val isWifiEnabled = wifiManager.isWifiEnabled
-
-        val items = listOf<RecyclerViewUiModel>(
+    private fun updateItems() {
+        val items = listOf(
             AutocompleteUiModel,
             CheckBoxUiModel,
             ChipsUiModel,
@@ -67,11 +53,12 @@ class RecyclerViewFragment : Fragment() {
             RatingBarUiModel,
             SeekBarUiModel,
             SpinnerUiModel,
-            SwitchUiModel(isWifiEnabled = isWifiEnabled),
+            SwitchUiModel,
             TextViewUiModel,
             ToggleButtonUiModel,
         )
         adapter.setItems(items)
+
         adapter.notifyDataSetChanged()
     }
 }

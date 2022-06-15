@@ -15,7 +15,7 @@ import com.mrkurilin.sample_project.R
 import com.mrkurilin.sample_project.RecyclerViewFragment
 import com.mrkurilin.sample_project.ui_model.SwitchUiModel
 
-class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerViewFragment) :
+class SwitchViewHolder(view: View, val launchWifiStateActivity: () -> Unit) :
     RecyclerView.ViewHolder(view) {
 
     private val wifiSwitch: SwitchCompat = view.findViewById(R.id.switch_wifi_switch_widget)
@@ -59,7 +59,7 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
     @SuppressWarnings("deprecation")
     private fun changeWifiState() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            recyclerViewFragment.launchWifiStateActivity()
+            launchWifiStateActivity()
         } else {
             wifiManager.isWifiEnabled = !wifiManager.isWifiEnabled
             sendWifiToast()
