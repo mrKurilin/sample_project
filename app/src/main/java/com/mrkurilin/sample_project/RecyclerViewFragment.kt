@@ -21,9 +21,11 @@ class RecyclerViewFragment : Fragment() {
         updateItems()
     }
 
-    private val wifiManager = requireContext().applicationContext.getSystemService(
-        Context.WIFI_SERVICE
-    ) as WifiManager
+    private val wifiManager by lazy {
+        requireContext().applicationContext.getSystemService(
+            Context.WIFI_SERVICE
+        ) as WifiManager
+    }
 
     private val adapter by lazy {
         WidgetRecyclerAdapter(requireContext(), this)
@@ -53,6 +55,8 @@ class RecyclerViewFragment : Fragment() {
     }
 
     private fun updateItems(){
+        val isWifiEnabled = wifiManager.isWifiEnabled
+
         val items = listOf<RecyclerViewUiModel>(
             AutocompleteUiModel,
             CheckBoxUiModel,
@@ -63,7 +67,7 @@ class RecyclerViewFragment : Fragment() {
             RatingBarUiModel,
             SeekBarUiModel,
             SpinnerUiModel,
-            SwitchUiModel(wifiManager),
+            SwitchUiModel(isWifiEnabled = isWifiEnabled),
             TextViewUiModel,
             ToggleButtonUiModel,
         )

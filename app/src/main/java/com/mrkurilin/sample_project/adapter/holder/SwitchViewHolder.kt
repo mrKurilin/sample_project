@@ -4,6 +4,7 @@ import android.Manifest
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.view.View
 import android.widget.Toast
@@ -12,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 import com.mrkurilin.sample_project.RecyclerViewFragment
+import com.mrkurilin.sample_project.ui_model.SwitchUiModel
 
 class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerViewFragment) :
     RecyclerView.ViewHolder(view) {
@@ -22,6 +24,10 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
     )
 
     private val onClickListener by lazy { createOnClickListener() }
+
+    private val wifiManager = view.context.applicationContext.getSystemService(
+        Context.WIFI_SERVICE
+    ) as WifiManager
 
     private val wifiStateOn = view.resources.getString(R.string.wifi_on)
     private val wifiStateOff = view.resources.getString(R.string.wifi_off)
@@ -83,11 +89,6 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
         }
     }
 
-    fun updateWifiSwitchState() {
-        wifiSwitch.isChecked = wifiManager.isWifiEnabled
-        sendWifiToast()
-    }
-
     private fun sendWifiToast(){
         if (wifiSwitch.isChecked) {
             sendToast(wifiStateOn)
@@ -98,5 +99,9 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
 
     private fun sendToast(text: String) {
         Toast.makeText(itemView.context, text, Toast.LENGTH_SHORT).show()
+    }
+
+    fun bind(){
+        wifiSwitch.isChecked = wifiManager.isWifiEnabled
     }
 }
