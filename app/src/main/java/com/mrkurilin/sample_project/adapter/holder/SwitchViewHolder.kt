@@ -4,7 +4,6 @@ import android.Manifest
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.pm.PackageManager
-import android.net.wifi.WifiManager
 import android.os.Build
 import android.view.View
 import android.widget.Toast
@@ -29,18 +28,12 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
     private val bluetoothStateOn = view.resources.getString(R.string.bluetooth_on)
     private val bluetoothStateOff = view.resources.getString(R.string.bluetooth_off)
 
-    private val wifiManager = view.context.applicationContext.getSystemService(
-        Context.WIFI_SERVICE
-    ) as WifiManager
-
     private val bluetoothManager = view.context.applicationContext.getSystemService(
         Context.BLUETOOTH_SERVICE
     ) as BluetoothManager
     private val bluetoothAdapter = bluetoothManager.adapter
 
     init {
-        recyclerViewFragment.switchViewHolder = this
-
         wifiSwitch.isChecked = wifiManager.isWifiEnabled
         bluetoothSwitch.isChecked = bluetoothAdapter.isEnabled
 
@@ -64,7 +57,6 @@ class SwitchViewHolder(view: View, private val recyclerViewFragment: RecyclerVie
         } else {
             wifiManager.isWifiEnabled = !wifiManager.isWifiEnabled
             sendWifiToast()
-
         }
     }
 

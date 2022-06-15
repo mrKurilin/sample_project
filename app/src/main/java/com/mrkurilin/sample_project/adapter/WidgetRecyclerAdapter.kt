@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 import com.mrkurilin.sample_project.RecyclerViewFragment
 import com.mrkurilin.sample_project.adapter.holder.*
+import com.mrkurilin.sample_project.ui_model.*
 
 private const val AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE = 0
 private const val CHECKBOX_VIEW_TYPE = 1
@@ -40,6 +41,8 @@ class WidgetRecyclerAdapter(
     context: Context,
     private val recyclerViewFragment: RecyclerViewFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var items = emptyList<RecyclerViewUiModel>()
 
     private val inflater = LayoutInflater.from(context)
 
@@ -104,11 +107,25 @@ class WidgetRecyclerAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {}
 
     override fun getItemCount(): Int {
-        return viewTypes.size
+        return items.size
     }
 
     override fun getItemViewType(position: Int): Int {
-        return viewTypes[position]
+        return when (items[position]) {
+            is AutocompleteUiModel -> AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE
+            is CheckBoxUiModel -> CHECKBOX_VIEW_TYPE
+            is ChipsUiModel -> CHIPS_VIEW_TYPE
+            is EditTextUiModel -> EDITTEXT_VIEW_TYPE
+            is ProgressBarUiModel -> PROGRESSBAR_VIEW_TYPE
+            is RadioButtonUiModel -> RADIOBUTTON_VIEW_TYPE
+            is RatingBarUiModel -> RATINGBAR_VIEW_TYPE
+            is SeekBarUiModel -> SEEKBAR_VIEW_TYPE
+            is SpinnerUiModel -> SPINNER_VIEW_TYPE
+            is SwitchUiModel -> SWITCH_VIEW_TYPE
+            is TextViewUiModel -> TEXTVIEW_VIEW_TYPE
+            is ToggleButtonUiModel -> TOGGLE_BUTTON_VIEW_TYPE
+            else -> throw IllegalArgumentException("Illegal items' position")
+        }
     }
 
     override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
@@ -121,5 +138,9 @@ class WidgetRecyclerAdapter(
         if (holder is ProgressBarViewHolder) {
             holder.onViewDetachedFromWindow()
         }
+    }
+
+    fun setItems(items: List<RecyclerViewUiModel>) {
+        this.items = items
     }
 }
