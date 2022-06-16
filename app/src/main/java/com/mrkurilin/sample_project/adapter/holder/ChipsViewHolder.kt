@@ -15,7 +15,20 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val textView: TextView = view.findViewById(R.id.textview_chip_widget)
     private val initialWordsArray = getSourceStringArray()
     private var arrayToShow = initialWordsArray
-    private val listener by lazy { createListener() }
+
+    private val listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+        if (isChecked) {
+            updateText(buttonView.id)
+        } else {
+            arrayToShow = initialWordsArray
+            chipGroup.checkedChipIds.forEach { checkedChipId ->
+                if (checkedChipId != buttonView.id) {
+                    updateText(checkedChipId)
+                }
+            }
+        }
+        textView.text = arrayToShow.joinToString("\n")
+    }
 
     init {
         textView.text = arrayToShow.joinToString("\n")
@@ -24,21 +37,6 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
     }
 
-    private fun createListener(): CompoundButton.OnCheckedChangeListener {
-        return CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                updateText(buttonView.id)
-            } else {
-                arrayToShow = initialWordsArray
-                chipGroup.checkedChipIds.forEach { checkedChipId ->
-                    if (checkedChipId != buttonView.id) {
-                        updateText(checkedChipId)
-                    }
-                }
-            }
-            textView.text = arrayToShow.joinToString("\n")
-        }
-    }
 
     private fun getSourceStringArray(): List<String> {
         return itemView.resources.getString(R.string.lipsum)

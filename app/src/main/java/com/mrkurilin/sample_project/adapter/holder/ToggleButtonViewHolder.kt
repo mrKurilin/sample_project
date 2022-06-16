@@ -32,22 +32,19 @@ class ToggleButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         R.id.textview_toggle_button_widget
     )
 
-    private val onCheckedChangeListener by lazy { createOnCheckedChangeListener() }
+    private val onCheckedChangeListener = CompoundButton.OnCheckedChangeListener {
+        buttonView, isChecked ->
+        when (buttonView) {
+            textToggleButton -> setTextColor(isChecked)
+            contentToggleButton -> setContent(isChecked)
+            backgroundToggleButton -> setImageViewBackground(isChecked)
+        }
+    }
 
     init {
         textToggleButton.setOnCheckedChangeListener(onCheckedChangeListener)
         contentToggleButton.setOnCheckedChangeListener(onCheckedChangeListener)
         backgroundToggleButton.setOnCheckedChangeListener(onCheckedChangeListener)
-    }
-
-    private fun createOnCheckedChangeListener(): CompoundButton.OnCheckedChangeListener {
-        return CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-            when (buttonView) {
-                textToggleButton -> setTextColor(isChecked)
-                contentToggleButton -> setContent(isChecked)
-                backgroundToggleButton -> setImageViewBackground(isChecked)
-            }
-        }
     }
 
     private fun setTextColor(checked: Boolean) {
