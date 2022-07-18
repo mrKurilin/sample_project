@@ -49,6 +49,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .replace(R.id.fragment_container_view, fragment)
                     .commit()
             }
+            R.id.navigation_dialog_fragment -> {
+                val fragment = DialogFragmentsFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_view, fragment)
+                    .commit()
+            }
             else -> throw IllegalArgumentException("Unknown menu item")
         }
 

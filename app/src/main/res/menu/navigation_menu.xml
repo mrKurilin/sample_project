@@ -8,8 +8,8 @@
             android:title="@string/navigation_widgets" />
 
         <item
-            android:id="@+id/navigation_sql"
-            android:title="@string/navigation_SQL" />
+            android:id="@+id/navigation_dialog_fragment"
+            android:title="@string/dialogfragment" />
     </group>
 
 </menu>
