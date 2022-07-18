@@ -1,11 +1,11 @@
 package com.mrkurilin.sample_project.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 import com.mrkurilin.sample_project.adapter.holder.*
+import com.mrkurilin.sample_project.ui_model.*
 
 private const val AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE = 0
 private const val CHECKBOX_VIEW_TYPE = 1
@@ -20,27 +20,15 @@ private const val TOGGLE_BUTTON_VIEW_TYPE = 9
 private const val CHIPS_VIEW_TYPE = 10
 private const val PROGRESSBAR_VIEW_TYPE = 11
 
-private val viewTypes = arrayOf(
-    AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE,
-    CHECKBOX_VIEW_TYPE,
-    CHIPS_VIEW_TYPE,
-    EDITTEXT_VIEW_TYPE,
-    PROGRESSBAR_VIEW_TYPE,
-    RADIOBUTTON_VIEW_TYPE,
-    RATINGBAR_VIEW_TYPE,
-    SEEKBAR_VIEW_TYPE,
-    SPINNER_VIEW_TYPE,
-    SWITCH_VIEW_TYPE,
-    TEXTVIEW_VIEW_TYPE,
-    TOGGLE_BUTTON_VIEW_TYPE,
-)
+class WidgetRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-class WidgetRecyclerAdapter(
-    context: Context
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val inflater = LayoutInflater.from(context)
+    private var items = emptyList<RecyclerViewUiModel>()
+
+    private lateinit var launchWifiStateActivity: () -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+
         return when (viewType) {
             CHECKBOX_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_checkbox, parent, false)
@@ -60,7 +48,7 @@ class WidgetRecyclerAdapter(
             }
             SWITCH_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_switch, parent, false)
-                SwitchViewHolder(view)
+                SwitchViewHolder(view, launchWifiStateActivity)
             }
             EDITTEXT_VIEW_TYPE -> {
                 val view = inflater.inflate(R.layout.widget_edittext, parent, false)
@@ -71,7 +59,11 @@ class WidgetRecyclerAdapter(
                 SpinnerViewHolder(view)
             }
             AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE -> {
-                val view = inflater.inflate(R.layout.widget_autocomplete_textview, parent, false)
+                val view = inflater.inflate(
+                    R.layout.widget_autocomplete_textview,
+                    parent,
+                    false
+                )
                 AutocompleteViewHolder(view)
             }
             SEEKBAR_VIEW_TYPE -> {
@@ -95,14 +87,31 @@ class WidgetRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is SwitchViewHolder -> holder.bind()
+        }
     }
 
     override fun getItemCount(): Int {
-        return viewTypes.size
+        return items.size
     }
 
     override fun getItemViewType(position: Int): Int {
-        return viewTypes[position]
+        return when (items[position]) {
+            is AutocompleteUiModel -> AUTOCOMPLETE_TEXTVIEW_VIEW_TYPE
+            is CheckBoxUiModel -> CHECKBOX_VIEW_TYPE
+            is ChipsUiModel -> CHIPS_VIEW_TYPE
+            is EditTextUiModel -> EDITTEXT_VIEW_TYPE
+            is ProgressBarUiModel -> PROGRESSBAR_VIEW_TYPE
+            is RadioButtonUiModel -> RADIOBUTTON_VIEW_TYPE
+            is RatingBarUiModel -> RATINGBAR_VIEW_TYPE
+            is SeekBarUiModel -> SEEKBAR_VIEW_TYPE
+            is SpinnerUiModel -> SPINNER_VIEW_TYPE
+            is SwitchUiModel -> SWITCH_VIEW_TYPE
+            is TextViewUiModel -> TEXTVIEW_VIEW_TYPE
+            is ToggleButtonUiModel -> TOGGLE_BUTTON_VIEW_TYPE
+            else -> throw IllegalArgumentException("Illegal items' position")
+        }
     }
 
     override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
@@ -115,5 +124,13 @@ class WidgetRecyclerAdapter(
         if (holder is ProgressBarViewHolder) {
             holder.onViewDetachedFromWindow()
         }
+    }
+
+    fun setItems(items: List<RecyclerViewUiModel>) {
+        this.items = items
+    }
+
+    fun setActivityLauncher(launchWifiStateActivity: () -> Unit) {
+        this.launchWifiStateActivity = launchWifiStateActivity
     }
 }

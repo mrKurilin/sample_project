@@ -16,7 +16,7 @@ class SpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val spinnerShape: Spinner = view.findViewById(R.id.spinner_shape_spinner_widget)
     private val spinnerContent: Spinner = view.findViewById(R.id.spinner_content_spinner_widget)
     private val imageView: ImageView = view.findViewById(R.id.imageview_spinner_widget)
-    private val onItemSelectedListener by lazy { getOnSpinnerItemSelectedListener() }
+    private val onItemSelectedListener by lazy { createOnItemSelectedListener() }
 
     private val colorMap = mapOf(
         "Red" to R.color.red,
@@ -45,7 +45,7 @@ class SpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         spinnerContent.onItemSelectedListener = onItemSelectedListener
     }
 
-    private fun getOnSpinnerItemSelectedListener(): AdapterView.OnItemSelectedListener {
+    private fun createOnItemSelectedListener(): AdapterView.OnItemSelectedListener {
         return object : AdapterView.OnItemSelectedListener {
 
             override fun onItemSelected(
