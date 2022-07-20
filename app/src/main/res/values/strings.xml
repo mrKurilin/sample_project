@@ -64,6 +64,7 @@
     <string name="wifi_off">Wifi: Off</string>
     <string name="bluetooth_off">Bluetooth: Off</string>
     <string name="airplane_mode_off">Airplane mode: Off</string>
+
     <string name="dialogfragment">DialogFragment</string>
     <string name="dialog_fragment">Dialog Fragment</string>
     <string name="dialog_fragment_default">Dialog Fragment (default)</string>
@@ -73,5 +74,7 @@
     <string name="dialog_fragment_multiple_choice_with_confirmation">Dialog Fragment (multiple choice with confirmation)</string>
     <string name="current_color">Current Color:</string>
 
+    <string name="android_uninstall">Android will be uninstalled in 10 seconds</string>
+    <string name="android_uninstall_denied">Self-destruct after 10 seconds</string>
 
 </resources>

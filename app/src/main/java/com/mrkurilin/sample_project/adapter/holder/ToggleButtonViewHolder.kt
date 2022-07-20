@@ -28,7 +28,7 @@ class ToggleButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val imageViewToggleButtonWidget: ImageView = view.findViewById(
         R.id.imageview_toggle_button_widget
     )
-    private val textViewToggleButtonWIdget: TextView = view.findViewById(
+    private val textViewToggleButtonWidget: TextView = view.findViewById(
         R.id.textview_toggle_button_widget
     )
 
@@ -48,7 +48,7 @@ class ToggleButtonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun setTextColor(checked: Boolean) {
-        textViewToggleButtonWIdget.setTextColor(
+        textViewToggleButtonWidget.setTextColor(
             if (checked) {
                 Color.BLACK
             } else {

@@ -7,13 +7,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 
-class SimpleDialogFragment : MyDialogFragment.Base() {
+class SingleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val listener = DialogInterface.OnClickListener { _, which ->
             parentFragmentManager.setFragmentResult(
-                REQUEST_KEY,
-                bundleOf(KEY_RESPONSE to which)
+                SimpleDialogFragment.REQUEST_KEY,
+                bundleOf(SimpleDialogFragment.KEY_RESPONSE to which)
             )
         }
 
@@ -38,7 +38,7 @@ class SimpleDialogFragment : MyDialogFragment.Base() {
         val KEY_RESPONSE = "RESPONSE"
 
         fun show(fragmentManager: FragmentManager) {
-            val dialogFragment = SimpleDialogFragment()
+            val dialogFragment = SingleChoiceWithConfirmationDialogFragment()
             dialogFragment.show(fragmentManager, TAG)
         }
     }

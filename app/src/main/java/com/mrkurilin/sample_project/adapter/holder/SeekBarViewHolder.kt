@@ -2,7 +2,7 @@ package com.mrkurilin.sample_project.adapter.holder
 
 import android.graphics.Color
 import android.view.View
-import android.widget.*
+import android.widget.SeekBar
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
 
