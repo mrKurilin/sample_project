@@ -7,8 +7,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import com.mrkurilin.sample_project.R
-import com.mrkurilin.sample_project.dialog_fragments.VolumeValues.Companion.currentVolume
-import com.mrkurilin.sample_project.dialog_fragments.VolumeValues.Companion.volumes
+import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.currentVolume
+import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.volumes
 
 class SingleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
 

@@ -1,7 +1,6 @@
 package com.mrkurilin.sample_project
 
 import android.content.DialogInterface
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +9,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.mrkurilin.sample_project.dialog_fragments.*
-import com.mrkurilin.sample_project.dialog_fragments.VolumeValues.Companion.currentVolume
+import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.currentColor
+import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.currentVolume
 import showToast
 
 class DialogFragmentsFragment : Fragment() {
-
-    private var currentColor = Color.RED
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,9 +24,6 @@ class DialogFragmentsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        currentVolume = savedInstanceState?.getInt(KEY_VOLUME) ?: 0
-        currentColor = savedInstanceState?.getInt(KEY_COLOR) ?: Color.RED
 
         updateUI(view)
 
@@ -95,6 +90,10 @@ class DialogFragmentsFragment : Fragment() {
         }
 
         SingleChoiceWithConfirmationDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner) {
+            updateUI(requireView())
+        }
+
+        MultipleChoiceDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner) {
             updateUI(requireView())
         }
     }
