@@ -29,7 +29,7 @@ class MultipleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
 
     companion object {
         @JvmStatic
-        val TAG: String = SimpleDialogFragment::class.java.simpleName
+        val TAG: String = MultipleChoiceWithConfirmationDialogFragment::class.java.simpleName
 
         @JvmStatic
         val REQUEST_KEY = "$TAG:defaultRequestKey"
