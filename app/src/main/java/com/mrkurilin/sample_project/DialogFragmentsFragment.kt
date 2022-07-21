@@ -10,11 +10,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.mrkurilin.sample_project.dialog_fragments.*
+import com.mrkurilin.sample_project.dialog_fragments.VolumeValues.Companion.currentVolume
 import showToast
 
 class DialogFragmentsFragment : Fragment() {
 
-    private var currentVolume = 0
     private var currentColor = Color.RED
 
     override fun onCreateView(
@@ -94,8 +94,9 @@ class DialogFragmentsFragment : Fragment() {
             updateUI(requireView())
         }
 
-
-
+        SingleChoiceWithConfirmationDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner) {
+            updateUI(requireView())
+        }
     }
 
     companion object {

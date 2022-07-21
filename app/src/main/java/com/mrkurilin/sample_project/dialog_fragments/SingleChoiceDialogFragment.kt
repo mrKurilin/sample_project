@@ -5,13 +5,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.LifecycleOwner
 import com.mrkurilin.sample_project.R
+import com.mrkurilin.sample_project.dialog_fragments.VolumeValues.Companion.volumes
 
 class SingleChoiceDialogFragment(currentVolume: Int) : MyDialogFragment.Base() {
 
-    private val volumes = (0..100 step 10).toList().toIntArray()
     private val currentIndex = volumes.indexOf(currentVolume)
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -53,11 +52,10 @@ class SingleChoiceDialogFragment(currentVolume: Int) : MyDialogFragment.Base() {
         ) {
             fragmentManager.setFragmentResultListener(
                 REQUEST_VOLUME_KEY,
-                lifecycleOwner,
-                FragmentResultListener { _, result ->
-                    listener(result.getInt(KEY_VOLUME_RESPONSE))
-                }
-            )
+                lifecycleOwner
+            ) { _, result ->
+                listener(result.getInt(KEY_VOLUME_RESPONSE))
+            }
         }
     }
 }

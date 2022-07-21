@@ -1,29 +1,29 @@
 package com.mrkurilin.sample_project.dialog_fragments
 
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.LifecycleOwner
+import com.mrkurilin.sample_project.R
+import com.mrkurilin.sample_project.dialog_fragments.VolumeValues.Companion.currentVolume
+import com.mrkurilin.sample_project.dialog_fragments.VolumeValues.Companion.volumes
 
 class SingleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val listener = DialogInterface.OnClickListener { _, which ->
-            parentFragmentManager.setFragmentResult(
-                SimpleDialogFragment.REQUEST_KEY,
-                bundleOf(SimpleDialogFragment.KEY_RESPONSE to which)
-            )
-        }
+        val volumesStrings = volumes.map { getString(R.string.volumes_list, it) }.toTypedArray()
 
         return AlertDialog.Builder(requireContext())
-            .setCancelable(true)
-            .setTitle("Alert Dialog Title")
-            .setMessage("Would you like to uninstall Android?")
-            .setPositiveButton("Yes", listener)
-            .setNegativeButton("No", listener)
-            .setNeutralButton("Ignore", listener)
+            .setTitle("Volume setup")
+            .setPositiveButton("Confirm") { dialog, _ ->
+                val index = (dialog as AlertDialog).listView.checkedItemPosition
+                currentVolume = volumes[index]
+                parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf())
+                dismiss()
+            }
+            .setSingleChoiceItems(volumesStrings, volumes.indexOf(currentVolume), null)
             .create()
     }
 
@@ -34,12 +34,19 @@ class SingleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
         @JvmStatic
         val REQUEST_KEY = "$TAG:defaultRequestKey"
 
-        @JvmStatic
-        val KEY_RESPONSE = "RESPONSE"
-
         fun show(fragmentManager: FragmentManager) {
             val dialogFragment = SingleChoiceWithConfirmationDialogFragment()
             dialogFragment.show(fragmentManager, TAG)
+        }
+
+        fun setupListener(
+            fragmentManager: FragmentManager,
+            lifecycleOwner: LifecycleOwner,
+            listener: () -> Unit
+        ) {
+            fragmentManager.setFragmentResultListener(REQUEST_KEY, lifecycleOwner) { _, _ ->
+                listener()
+            }
         }
     }
 }
