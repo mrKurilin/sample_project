@@ -31,12 +31,6 @@ class DialogFragmentsFragment : Fragment() {
         setupDialogFragmentsListeners()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt(KEY_VOLUME, currentVolume)
-        outState.putInt(KEY_COLOR, currentColor)
-    }
-
     private fun updateUI(view: View) {
         view.findViewById<TextView>(R.id.textview_dialog_fragments).text = getString(
             R.string.current_volume,
@@ -46,7 +40,6 @@ class DialogFragmentsFragment : Fragment() {
         view.findViewById<View>(R.id.view_dialog_fragments_fragment).setBackgroundColor(
             currentColor
         )
-
     }
 
     private fun dialogFragmentsSetOnClickListeners(view: View) {
@@ -89,19 +82,22 @@ class DialogFragmentsFragment : Fragment() {
             updateUI(requireView())
         }
 
-        SingleChoiceWithConfirmationDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner) {
+        SingleChoiceWithConfirmationDialogFragment.setupListener(
+            parentFragmentManager,
+            viewLifecycleOwner
+        ) {
             updateUI(requireView())
         }
 
         MultipleChoiceDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner) {
             updateUI(requireView())
         }
-    }
 
-    companion object {
-        @JvmStatic
-        private val KEY_VOLUME = "KEY_VOLUME"
-        @JvmStatic
-        private val KEY_COLOR = "KEY_COLOR"
+        MultipleChoiceWithConfirmationDialogFragment.setupListener(
+            parentFragmentManager,
+            viewLifecycleOwner
+        ) {
+            updateUI(requireView())
+        }
     }
 }

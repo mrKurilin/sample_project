@@ -32,9 +32,6 @@ class MultipleChoiceDialogFragment : MyDialogFragment.Base() {
         @JvmStatic
         val REQUEST_KEY = "$TAG:defaultRequestKey"
 
-        @JvmStatic
-        val KEY_RESPONSE = "RESPONSE"
-
         fun show(fragmentManager: FragmentManager) {
             val dialogFragment = MultipleChoiceDialogFragment()
             dialogFragment.show(fragmentManager, TAG)

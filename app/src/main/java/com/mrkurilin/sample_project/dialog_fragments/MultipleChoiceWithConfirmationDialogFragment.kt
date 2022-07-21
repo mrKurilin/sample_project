@@ -6,24 +6,26 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.LifecycleOwner
+import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.checkedColors
+import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.colors
+import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.updateCurrentColor
 
 class MultipleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val listener = DialogInterface.OnClickListener { _, which ->
-            parentFragmentManager.setFragmentResult(
-                SimpleDialogFragment.REQUEST_KEY,
-                bundleOf(SimpleDialogFragment.KEY_RESPONSE to which)
-            )
-        }
-
+        val _checkedColors = checkedColors
         return AlertDialog.Builder(requireContext())
             .setCancelable(true)
-            .setTitle("Alert Dialog Title")
-            .setMessage("Would you like to uninstall Android?")
-            .setPositiveButton("Yes", listener)
-            .setNegativeButton("No", listener)
-            .setNeutralButton("Ignore", listener)
+            .setTitle("Setup color")
+            .setMultiChoiceItems(colors, checkedColors) { _, which, isChecked ->
+                _checkedColors[which] = isChecked
+            }
+            .setPositiveButton("Confirm") { _, _ ->
+                checkedColors = _checkedColors
+                updateCurrentColor()
+                parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf())
+            }
             .create()
     }
 
@@ -34,12 +36,19 @@ class MultipleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
         @JvmStatic
         val REQUEST_KEY = "$TAG:defaultRequestKey"
 
-        @JvmStatic
-        val KEY_RESPONSE = "RESPONSE"
-
         fun show(fragmentManager: FragmentManager) {
             val dialogFragment = MultipleChoiceWithConfirmationDialogFragment()
             dialogFragment.show(fragmentManager, TAG)
+        }
+
+        fun setupListener(
+            fragmentManager: FragmentManager,
+            lifecycleOwner: LifecycleOwner,
+            listener: () -> Unit
+        ) {
+            fragmentManager.setFragmentResultListener(REQUEST_KEY, lifecycleOwner) { _, _ ->
+                listener()
+            }
         }
     }
 }
