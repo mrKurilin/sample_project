@@ -9,18 +9,17 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.checkedColors
 import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.colors
-import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.currentColor
 import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.updateCurrentColor
 
 class MultipleChoiceDialogFragment : MyDialogFragment.Base() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
-            .setMultiChoiceItems(colors, checkedColors, DialogInterface.OnMultiChoiceClickListener { _, which, isChecked ->
+            .setMultiChoiceItems(colors, checkedColors) { _, which, isChecked ->
                 checkedColors[which] = isChecked
                 updateCurrentColor()
                 parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf())
-            })
+            }
             .setPositiveButton("Cancel", null)
             .create()
     }

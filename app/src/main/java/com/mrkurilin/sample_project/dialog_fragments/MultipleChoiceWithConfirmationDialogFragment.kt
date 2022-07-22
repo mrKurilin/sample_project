@@ -1,7 +1,6 @@
 package com.mrkurilin.sample_project.dialog_fragments
 
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
@@ -14,15 +13,15 @@ import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Compa
 class MultipleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val _checkedColors = checkedColors
+        val lCheckedColors = checkedColors
         return AlertDialog.Builder(requireContext())
             .setCancelable(true)
             .setTitle("Setup color")
             .setMultiChoiceItems(colors, checkedColors) { _, which, isChecked ->
-                _checkedColors[which] = isChecked
+                lCheckedColors[which] = isChecked
             }
             .setPositiveButton("Confirm") { _, _ ->
-                checkedColors = _checkedColors
+                checkedColors = lCheckedColors
                 updateCurrentColor()
                 parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf())
             }

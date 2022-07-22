@@ -1,7 +1,6 @@
 package com.mrkurilin.sample_project.dialog_fragments
 
 import android.graphics.Color
-import androidx.core.graphics.red
 
 class DialogFragmentsValues {
 
