@@ -2,7 +2,6 @@ package com.mrkurilin.sample_project.dialog_fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
@@ -15,6 +14,7 @@ class MultipleChoiceDialogFragment : MyDialogFragment.Base() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
+            .setTitle("Setup Color")
             .setMultiChoiceItems(colors, checkedColors) { _, which, isChecked ->
                 checkedColors[which] = isChecked
                 updateCurrentColor()

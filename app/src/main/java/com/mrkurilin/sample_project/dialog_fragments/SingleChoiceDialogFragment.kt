@@ -18,7 +18,7 @@ class SingleChoiceDialogFragment(currentVolume: Int) : MyDialogFragment.Base() {
 
         return AlertDialog.Builder(requireContext())
             .setCancelable(true)
-            .setTitle("Volume setup")
+            .setTitle("Setup volume")
             .setSingleChoiceItems(volumesStrings, currentIndex) { _, which ->
                 val chosenVolume = volumes[which]
                 parentFragmentManager.setFragmentResult(

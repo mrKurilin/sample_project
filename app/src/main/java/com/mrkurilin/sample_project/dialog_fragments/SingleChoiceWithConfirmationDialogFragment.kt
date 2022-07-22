@@ -16,7 +16,7 @@ class SingleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
         val volumesStrings = volumes.map { getString(R.string.volumes_list, it) }.toTypedArray()
 
         return AlertDialog.Builder(requireContext())
-            .setTitle("Volume setup")
+            .setTitle("Setup volume")
             .setPositiveButton("Confirm") { dialog, _ ->
                 val index = (dialog as AlertDialog).listView.checkedItemPosition
                 currentVolume = volumes[index]

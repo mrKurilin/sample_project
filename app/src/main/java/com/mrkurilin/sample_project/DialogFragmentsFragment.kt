@@ -1,6 +1,5 @@
 package com.mrkurilin.sample_project
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.fragment.app.Fragment
 import com.mrkurilin.sample_project.dialog_fragments.*
 import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.currentColor
 import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.currentVolume
-import showToast
 
 class DialogFragmentsFragment : Fragment() {
 
@@ -27,7 +25,7 @@ class DialogFragmentsFragment : Fragment() {
 
         updateUI(view)
 
-        dialogFragmentsSetOnClickListeners(view)
+        buttonsSetOnClickListeners(view)
         setupDialogFragmentsListeners()
     }
 
@@ -42,7 +40,7 @@ class DialogFragmentsFragment : Fragment() {
         )
     }
 
-    private fun dialogFragmentsSetOnClickListeners(view: View) {
+    private fun buttonsSetOnClickListeners(view: View) {
         view.findViewById<Button>(R.id.button_default_dialog_fragments).setOnClickListener {
             SimpleDialogFragment.show(parentFragmentManager)
         }

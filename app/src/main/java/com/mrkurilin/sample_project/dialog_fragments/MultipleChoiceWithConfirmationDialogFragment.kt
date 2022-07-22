@@ -15,7 +15,6 @@ class MultipleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val lCheckedColors = checkedColors
         return AlertDialog.Builder(requireContext())
-            .setCancelable(true)
             .setTitle("Setup color")
             .setMultiChoiceItems(colors, checkedColors) { _, which, isChecked ->
                 lCheckedColors[which] = isChecked
