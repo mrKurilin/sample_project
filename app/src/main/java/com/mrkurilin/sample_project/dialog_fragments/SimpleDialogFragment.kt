@@ -6,15 +6,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
+import com.mrkurilin.sample_project.R
+import showToast
 
 class SimpleDialogFragment : MyDialogFragment.Base() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val listener = DialogInterface.OnClickListener { _, which ->
-            parentFragmentManager.setFragmentResult(
-                REQUEST_KEY,
-                bundleOf(KEY_RESPONSE to which)
-            )
+            when (which) {
+                DialogInterface.BUTTON_POSITIVE -> showToast(R.string.android_uninstall)
+                else -> showToast(R.string.android_uninstall_denied)
+            }
         }
 
         return AlertDialog.Builder(requireContext())
@@ -30,12 +32,6 @@ class SimpleDialogFragment : MyDialogFragment.Base() {
     companion object {
         @JvmStatic
         val TAG: String = SimpleDialogFragment::class.java.simpleName
-
-        @JvmStatic
-        val REQUEST_KEY = "$TAG:defaultRequestKey"
-
-        @JvmStatic
-        val KEY_RESPONSE = "RESPONSE"
 
         fun show(fragmentManager: FragmentManager) {
             val dialogFragment = SimpleDialogFragment()

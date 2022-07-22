@@ -67,16 +67,6 @@ class DialogFragmentsFragment : Fragment() {
     }
 
     private fun setupDialogFragmentsListeners() {
-        parentFragmentManager.setFragmentResultListener(
-            SimpleDialogFragment.REQUEST_KEY,
-            viewLifecycleOwner
-        ) { _, result ->
-            when (result.getInt(SimpleDialogFragment.KEY_RESPONSE)) {
-                DialogInterface.BUTTON_POSITIVE -> showToast(R.string.android_uninstall)
-                else -> showToast(R.string.android_uninstall_denied)
-            }
-        }
-
         SingleChoiceDialogFragment.setupListener(parentFragmentManager, viewLifecycleOwner) {
             currentVolume = it
             updateUI(requireView())
