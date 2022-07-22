@@ -65,5 +65,26 @@
     <string name="bluetooth_off">Bluetooth: Off</string>
     <string name="airplane_mode_off">Airplane mode: Off</string>
 
+    <string name="dialogfragment">DialogFragment</string>
+    <string name="dialog_fragment">Dialog Fragment</string>
+    <string name="dialog_fragment_default">Dialog Fragment (default)</string>
+    <string name="dialog_fragment_single_choice">Dialog Fragment (single choice)</string>
+    <string name="dialog_fragment_single_choice_with_confirmation">Dialog Fragment (single choice with confirmation)</string>
+    <string name="dialog_fragment_multiple_choice">Dialog Fragment (multiple choice)</string>
+    <string name="dialog_fragment_multiple_choice_with_confirmation">Dialog Fragment (multiple choice with confirmation)</string>
+    <string name="current_color">Current Color:</string>
+
+    <string name="android_uninstall">Android will be uninstalled in 10 seconds</string>
+    <string name="android_uninstall_denied">Self-destruct after 10 seconds</string>
+
+    <string name="current_volume">Current Volume: %1$d%%</string>
+    <string name="volumes_list">Volume: %1$d%%</string>
+
+    <string-array name="colors">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+    </string-array>
+
 
 </resources>

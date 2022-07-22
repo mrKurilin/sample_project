@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".DialogFragmentsFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/dialog_fragment"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
+
+    <Button
+        android:id="@+id/button_default_dialog_fragments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/dialog_fragment_default"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button_single_choice_dialog_fragments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/dialog_fragment_single_choice"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button_single_choice_with_confirmation_dialog_fragments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/dialog_fragment_single_choice_with_confirmation"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button_multiple_choice_dialog_fragments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/dialog_fragment_multiple_choice"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/button_multiple_choice_with_confirmation_dialog_fragments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/dialog_fragment_multiple_choice_with_confirmation"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/textview_dialog_fragments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/current_color"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/view_dialog_fragments_fragment"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

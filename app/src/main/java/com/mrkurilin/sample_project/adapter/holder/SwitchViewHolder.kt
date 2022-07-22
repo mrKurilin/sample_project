@@ -7,11 +7,11 @@ import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
+import showToast
 
 class SwitchViewHolder(
     view: View,
@@ -75,30 +75,26 @@ class SwitchViewHolder(
             when (bluetoothAdapter.isEnabled) {
                 true -> {
                     bluetoothAdapter.disable()
-                    sendToast(bluetoothStateOff)
+                    showToast(bluetoothStateOff)
                     bluetoothSwitch.isChecked = false
                 }
                 false -> {
                     bluetoothAdapter.enable()
-                    sendToast(bluetoothStateOn)
+                    showToast(bluetoothStateOn)
                     bluetoothSwitch.isChecked = true
                 }
             }
         } else {
-            sendToast("Permission denied")
+            showToast("Permission denied")
         }
     }
 
     private fun sendWifiToast() {
         if (wifiSwitch.isChecked) {
-            sendToast(wifiStateOn)
+            showToast(wifiStateOn)
         } else {
-            sendToast(wifiStateOff)
+            showToast(wifiStateOff)
         }
-    }
-
-    private fun sendToast(text: String) {
-        Toast.makeText(itemView.context, text, Toast.LENGTH_SHORT).show()
     }
 
     fun bind() {
