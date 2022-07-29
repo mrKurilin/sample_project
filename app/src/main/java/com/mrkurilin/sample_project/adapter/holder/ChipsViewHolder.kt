@@ -16,17 +16,21 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val initialWordsArray = getSourceStringArray()
     private var arrayToShow = initialWordsArray
 
-    private val listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-        if (isChecked) {
-            updateText(buttonView.id)
+    private val filterItems = mutableListOf<Int>()
+
+    private val listener = CompoundButton.OnCheckedChangeListener { buttonView, _ ->
+        val id = buttonView.id
+
+        if (filterItems.contains(id)) {
+            filterItems.remove(id)
         } else {
-            arrayToShow = initialWordsArray
-            chipGroup.checkedChipIds.forEach { checkedChipId ->
-                if (checkedChipId != buttonView.id) {
-                    updateText(checkedChipId)
-                }
-            }
+            filterItems.add(id)
         }
+
+        arrayToShow = initialWordsArray.filter { word ->
+            check(word)
+        }
+
         textView.text = arrayToShow.joinToString("\n")
     }
 
@@ -36,7 +40,6 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             (it as Chip).setOnCheckedChangeListener(listener)
         }
     }
-
 
     private fun getSourceStringArray(): List<String> {
         return itemView.resources.getString(R.string.lipsum)
@@ -48,20 +51,19 @@ class ChipsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             .sorted()
     }
 
-    private fun updateText(chipId: Int) {
-        when (chipId) {
-            R.id.chip_kword_chips_widget -> {
-                arrayToShow = arrayToShow.filter { word -> word.startsWith("K") }
-            }
-            R.id.chip_nend_word_chip_widget -> {
-                arrayToShow = arrayToShow.filter { word -> word.endsWith("N") }
-            }
-            R.id.chip_tcontain_word_chip_widget -> {
-                arrayToShow = arrayToShow.filter { word -> word.contains("L") }
-            }
-            R.id.chip_kotlin_word_chip_widget -> {
-                arrayToShow = mutableListOf("KOTLIN")
+    private fun check(word: String): Boolean {
+        var result = true
+        filterItems.forEach { filterItem ->
+            result = when (filterItem) {
+                R.id.chip_kword_chips_widget -> word.startsWith("K")
+                R.id.chip_nend_word_chip_widget -> word.endsWith("N")
+                R.id.chip_tcontain_word_chip_widget -> word.contains("L")
+                R.id.chip_kotlin_word_chip_widget -> word == "KOTLIN"
+                else -> {
+                    throw Exception("Illegal id")
+                }
             }
         }
+        return result
     }
 }

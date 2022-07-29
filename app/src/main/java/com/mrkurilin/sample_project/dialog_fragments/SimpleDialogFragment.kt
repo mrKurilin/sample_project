@@ -3,19 +3,29 @@ package com.mrkurilin.sample_project.dialog_fragments
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentManager
 import com.mrkurilin.sample_project.R
-import showToast
 
 class SimpleDialogFragment : MyDialogFragment.Base() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val listener = DialogInterface.OnClickListener { _, which ->
             when (which) {
-                DialogInterface.BUTTON_POSITIVE -> showToast(R.string.android_uninstall)
-                else -> showToast(R.string.android_uninstall_denied)
+                DialogInterface.BUTTON_POSITIVE -> {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.android_uninstall,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                else -> {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.android_uninstall_denied,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
 
@@ -30,12 +40,6 @@ class SimpleDialogFragment : MyDialogFragment.Base() {
     }
 
     companion object {
-        @JvmStatic
-        val TAG: String = SimpleDialogFragment::class.java.simpleName
-
-        fun show(fragmentManager: FragmentManager) {
-            val dialogFragment = SimpleDialogFragment()
-            dialogFragment.show(fragmentManager, TAG)
-        }
+        const val TAG = "SimpleDialogFragmentTag"
     }
 }

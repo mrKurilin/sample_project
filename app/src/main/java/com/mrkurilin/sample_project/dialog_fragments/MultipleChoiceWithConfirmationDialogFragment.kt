@@ -4,49 +4,28 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.LifecycleOwner
-import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.checkedColors
-import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.colors
-import com.mrkurilin.sample_project.dialog_fragments.DialogFragmentsValues.Companion.updateCurrentColor
 
-class MultipleChoiceWithConfirmationDialogFragment : MyDialogFragment.Base() {
+class MultipleChoiceWithConfirmationDialogFragment : MyDialogFragment.ColorSetupFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val lCheckedColors = checkedColors
+        initCheckedColors(BOOLEAN_COLOR_KEY)
+
         return AlertDialog.Builder(requireContext())
             .setTitle("Setup color")
             .setMultiChoiceItems(colors, checkedColors) { _, which, isChecked ->
-                lCheckedColors[which] = isChecked
+                checkedColors[which] = isChecked
             }
             .setPositiveButton("Confirm") { _, _ ->
-                checkedColors = lCheckedColors
-                updateCurrentColor()
-                parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf())
+                parentFragmentManager.setFragmentResult(
+                    REQUEST_KEY,
+                    bundleOf(BOOLEAN_COLOR_KEY to checkedColors)
+                )
             }
             .create()
     }
 
     companion object {
-        @JvmStatic
-        val TAG: String = MultipleChoiceWithConfirmationDialogFragment::class.java.simpleName
-
-        @JvmStatic
-        val REQUEST_KEY = "$TAG:defaultRequestKey"
-
-        fun show(fragmentManager: FragmentManager) {
-            val dialogFragment = MultipleChoiceWithConfirmationDialogFragment()
-            dialogFragment.show(fragmentManager, TAG)
-        }
-
-        fun setupListener(
-            fragmentManager: FragmentManager,
-            lifecycleOwner: LifecycleOwner,
-            listener: () -> Unit
-        ) {
-            fragmentManager.setFragmentResultListener(REQUEST_KEY, lifecycleOwner) { _, _ ->
-                listener()
-            }
-        }
+        const val REQUEST_KEY = "MultipleChoiceWithConfirmationDialogFragmentRequestKey"
+        const val BOOLEAN_COLOR_KEY = "MultipleChoiceWithConfirmationDialogFragmentBC"
     }
 }

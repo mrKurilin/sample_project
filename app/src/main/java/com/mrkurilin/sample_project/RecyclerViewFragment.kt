@@ -1,5 +1,7 @@
 package com.mrkurilin.sample_project
 
+import android.bluetooth.BluetoothManager
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +21,8 @@ class RecyclerViewFragment : Fragment() {
         updateItems()
     }
 
-    private val adapter = WidgetRecyclerAdapter()
+    private val adapter =
+        WidgetRecyclerAdapter() { wifiStateActivityResultContractLauncher.launch(Any()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,15 +40,16 @@ class RecyclerViewFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = linearLayoutManager
 
-        adapter.setActivityLauncher {
-            wifiStateActivityResultContractLauncher.launch(Any())
-        }
-
         recyclerView.adapter = adapter
         updateItems()
     }
 
     private fun updateItems() {
+        val bluetoothManager = requireContext().applicationContext.getSystemService(
+            Context.BLUETOOTH_SERVICE
+        ) as BluetoothManager
+        val bluetoothAdapter = bluetoothManager.adapter
+
         val items = listOf(
             AutocompleteUiModel,
             CheckBoxUiModel,
@@ -56,7 +60,7 @@ class RecyclerViewFragment : Fragment() {
             RatingBarUiModel,
             SeekBarUiModel,
             SpinnerUiModel,
-            SwitchUiModel,
+            SwitchUiModel(bluetoothAdapter.isEnabled),
             TextViewUiModel,
             ToggleButtonUiModel,
         )
