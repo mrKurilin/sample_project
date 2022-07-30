@@ -20,11 +20,11 @@ private const val TOGGLE_BUTTON_VIEW_TYPE = 9
 private const val CHIPS_VIEW_TYPE = 10
 private const val PROGRESSBAR_VIEW_TYPE = 11
 
-class WidgetRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WidgetRecyclerAdapter(
+    private val launchWifiStateActivity: () -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items = emptyList<RecyclerViewUiModel>()
-
-    private lateinit var launchWifiStateActivity: () -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -88,7 +88,7 @@ class WidgetRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is SwitchViewHolder -> holder.bind()
+            is SwitchViewHolder -> holder.bind((items[position] as SwitchUiModel))
         }
     }
 
@@ -128,9 +128,5 @@ class WidgetRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun setItems(items: List<RecyclerViewUiModel>) {
         this.items = items
-    }
-
-    fun setActivityLauncher(launchWifiStateActivity: () -> Unit) {
-        this.launchWifiStateActivity = launchWifiStateActivity
     }
 }

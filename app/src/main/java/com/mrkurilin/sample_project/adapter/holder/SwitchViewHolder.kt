@@ -7,23 +7,22 @@ import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mrkurilin.sample_project.R
-import showToast
+import com.mrkurilin.sample_project.ui_model.SwitchUiModel
 
 class SwitchViewHolder(
     view: View,
-    private val launchWifiStateActivity: () -> Unit
+    private val toggleWifi: () -> Unit
 ) : RecyclerView.ViewHolder(view) {
 
     private val wifiSwitch: SwitchCompat = view.findViewById(R.id.switch_wifi_switch_widget)
     private val bluetoothSwitch: SwitchCompat = view.findViewById(
         R.id.switch_bluetooth_switch_widget
     )
-
-    private val onClickListener by lazy { createOnClickListener() }
 
     private val wifiManager = view.context.applicationContext.getSystemService(
         Context.WIFI_SERVICE
@@ -43,23 +42,18 @@ class SwitchViewHolder(
         wifiSwitch.isChecked = wifiManager.isWifiEnabled
         bluetoothSwitch.isChecked = bluetoothAdapter.isEnabled
 
-        wifiSwitch.setOnClickListener(onClickListener)
-        bluetoothSwitch.setOnClickListener(onClickListener)
-    }
-
-    private fun createOnClickListener(): View.OnClickListener {
-        return View.OnClickListener { view ->
-            when (view) {
-                wifiSwitch -> changeWifiState()
-                bluetoothSwitch -> changeBluetoothState()
-            }
+        wifiSwitch.setOnClickListener {
+            changeWifiState()
+        }
+        bluetoothSwitch.setOnClickListener {
+            changeBluetoothState()
         }
     }
 
     @SuppressWarnings("deprecation")
     private fun changeWifiState() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            launchWifiStateActivity()
+            toggleWifi()
         } else {
             wifiManager.isWifiEnabled = !wifiManager.isWifiEnabled
             sendWifiToast()
@@ -67,37 +61,37 @@ class SwitchViewHolder(
     }
 
     private fun changeBluetoothState() {
-        if (ActivityCompat.checkSelfPermission(
-                itemView.context,
-                Manifest.permission.BLUETOOTH_CONNECT
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            when (bluetoothAdapter.isEnabled) {
-                true -> {
-                    bluetoothAdapter.disable()
-                    showToast(bluetoothStateOff)
-                    bluetoothSwitch.isChecked = false
-                }
-                false -> {
-                    bluetoothAdapter.enable()
-                    showToast(bluetoothStateOn)
-                    bluetoothSwitch.isChecked = true
-                }
+        val bluetoothPermissionGranted = ActivityCompat.checkSelfPermission(
+            itemView.context,
+            Manifest.permission.BLUETOOTH_ADMIN
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if (bluetoothPermissionGranted) {
+            if (bluetoothAdapter.isEnabled) {
+                bluetoothAdapter.disable()
+                Toast.makeText(itemView.context, bluetoothStateOff, Toast.LENGTH_LONG).show()
+                bluetoothSwitch.isChecked = false
+
+            } else {
+                bluetoothAdapter.enable()
+                Toast.makeText(itemView.context, bluetoothStateOn, Toast.LENGTH_LONG).show()
+                bluetoothSwitch.isChecked = true
             }
         } else {
-            showToast("Permission denied")
+            Toast.makeText(itemView.context, "Permission denied", Toast.LENGTH_LONG).show()
+            bluetoothSwitch.isEnabled = false
         }
     }
 
     private fun sendWifiToast() {
         if (wifiSwitch.isChecked) {
-            showToast(wifiStateOn)
+            Toast.makeText(itemView.context, wifiStateOn, Toast.LENGTH_LONG).show()
         } else {
-            showToast(wifiStateOff)
+            Toast.makeText(itemView.context, wifiStateOff, Toast.LENGTH_LONG).show()
         }
     }
 
-    fun bind() {
-        wifiSwitch.isChecked = wifiManager.isWifiEnabled
+    fun bind(uiModel: SwitchUiModel) {
+        bluetoothSwitch.isChecked = uiModel.bluetoothEnabled
     }
 }

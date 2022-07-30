@@ -15,13 +15,12 @@ class AutocompleteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         R.array.widgets_auto_complete_sample
     )
 
-    private val adapter = ArrayAdapter(
-        view.context,
-        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-        autoCompleteStringArray
-    )
-
     init {
+        val adapter = ArrayAdapter(
+            view.context,
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            autoCompleteStringArray
+        )
         autoCompleteTextView.setAdapter(adapter)
     }
 }

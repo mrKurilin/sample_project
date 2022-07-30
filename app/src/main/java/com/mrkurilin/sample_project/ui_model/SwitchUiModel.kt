@@ -1,3 +1,5 @@
 package com.mrkurilin.sample_project.ui_model
 
-object SwitchUiModel: RecyclerViewUiModel
+data class SwitchUiModel(
+    val bluetoothEnabled: Boolean
+): RecyclerViewUiModel

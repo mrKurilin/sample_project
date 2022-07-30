@@ -1,5 +1,7 @@
 package com.mrkurilin.sample_project
 
+import android.bluetooth.BluetoothManager
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,14 +14,23 @@ import com.mrkurilin.sample_project.ui_model.*
 
 class RecyclerViewFragment : Fragment() {
 
-    private val wifiStateActivityResultContract = WifiStateActivityResultContract()
-    private val wifiStateActivityResultContractLauncher = registerForActivityResult(
-        wifiStateActivityResultContract,
-    ) {
-        updateItems()
+    private val adapter by lazy {
+        val wifiStateActivityResultContractLauncher = registerForActivityResult(
+            WifiStateActivityResultContract()
+        ) {
+            updateItems()
+        }
+        WidgetRecyclerAdapter {
+            wifiStateActivityResultContractLauncher.launch(Any())
+        }
     }
 
-    private val adapter = WidgetRecyclerAdapter()
+    private val bluetoothAdapter by lazy {
+        val bluetoothManager = requireContext().applicationContext.getSystemService(
+            Context.BLUETOOTH_SERVICE
+        ) as BluetoothManager
+        bluetoothManager.adapter
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,12 +45,7 @@ class RecyclerViewFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_fragment)
 
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-        recyclerView.layoutManager = linearLayoutManager
-
-        adapter.setActivityLauncher {
-            wifiStateActivityResultContractLauncher.launch(Any())
-        }
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         recyclerView.adapter = adapter
         updateItems()
@@ -56,12 +62,11 @@ class RecyclerViewFragment : Fragment() {
             RatingBarUiModel,
             SeekBarUiModel,
             SpinnerUiModel,
-            SwitchUiModel,
+            SwitchUiModel(bluetoothAdapter.isEnabled),
             TextViewUiModel,
             ToggleButtonUiModel,
         )
         adapter.setItems(items)
-
         adapter.notifyDataSetChanged()
     }
 }
