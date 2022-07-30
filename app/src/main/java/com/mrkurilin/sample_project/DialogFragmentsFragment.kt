@@ -10,17 +10,16 @@ import android.widget.TextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.forEach
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.mrkurilin.sample_project.dialog_fragments.*
+import kotlin.properties.Delegates
 
 class DialogFragmentsFragment : Fragment() {
 
     private lateinit var textViewCurrentVolume: TextView
     private lateinit var viewToChangeColor: View
-    private var currentVolume = 0
-    private var currentColor = Color.WHITE
-    var colorAsBooleanArray = booleanArrayOf(false, false, false)
+    private lateinit var dialogFragmentsData: DialogFragmentsData
+    private var currentColor by Delegates.notNull<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,119 +35,82 @@ class DialogFragmentsFragment : Fragment() {
         textViewCurrentVolume = view.findViewById(R.id.textview_dialog_fragments)
         viewToChangeColor = view.findViewById(R.id.view_dialog_fragments_fragment)
 
+        val volumes: IntArray = (0..100 step 10).toList().toIntArray()
+        val volumesStrings: Array<String> =
+            volumes.map { getString(R.string.volumes_list, it) }.toTypedArray()
+
+        dialogFragmentsData = DialogFragmentsData(volumes, volumesStrings)
+
         bindViews()
 
         buttonsSetOnClickListeners(view)
-        setListeners()
+        setupDialogFragmentsListeners()
     }
 
     private fun bindViews() {
+        updateCurrentColor()
         textViewCurrentVolume.text = getString(
             R.string.current_volume,
-            currentVolume
+            dialogFragmentsData.currentVolume
         )
         viewToChangeColor.setBackgroundColor(currentColor)
     }
 
     private fun buttonsSetOnClickListeners(view: View) {
-        val listener = View.OnClickListener { v: View ->
-            val dialogFragment: DialogFragment
-            when (v.id) {
+        val listener = View.OnClickListener { clickedView: View ->
+            val dialogFragment = when (clickedView.id) {
                 R.id.button_default_dialog_fragments -> {
-                    dialogFragment = SimpleDialogFragment()
+                    SimpleDialogFragment()
                 }
                 R.id.button_single_choice_dialog_fragments -> {
-                    dialogFragment = SingleChoiceDialogFragment()
-                    dialogFragment.arguments = bundleOf(
-                        SingleChoiceDialogFragment.CURRENT_VOLUME_KEY to currentVolume
-                    )
+                    SingleChoiceDialogFragment()
                 }
                 R.id.button_single_choice_with_confirmation_dialog_fragments -> {
-                    dialogFragment = SingleChoiceWithConfirmationDialogFragment()
-                    dialogFragment.arguments = bundleOf(
-                        SingleChoiceWithConfirmationDialogFragment.CURRENT_VOLUME_KEY to currentVolume
-                    )
+                    SingleChoiceWithConfirmationDialogFragment()
                 }
                 R.id.button_multiple_choice_dialog_fragments -> {
-                    dialogFragment = MultipleChoiceDialogFragment()
-                    dialogFragment.arguments = bundleOf(
-                        MultipleChoiceDialogFragment.BOOLEAN_COLOR_KEY to colorAsBooleanArray
-                    )
+                    MultipleChoiceDialogFragment()
                 }
                 R.id.button_multiple_choice_with_confirmation_dialog_fragments -> {
-                    dialogFragment = MultipleChoiceWithConfirmationDialogFragment()
-                    dialogFragment.arguments = bundleOf(
-                        MultipleChoiceWithConfirmationDialogFragment.BOOLEAN_COLOR_KEY
-                                to colorAsBooleanArray
-                    )
+                    MultipleChoiceWithConfirmationDialogFragment()
                 }
                 else -> {
                     throw IllegalArgumentException("Illegal id")
                 }
             }
-            dialogFragment.show(parentFragmentManager, "TAG")
+            dialogFragment.arguments = bundleOf(
+                DialogFragmentsData.RESPONSE_KEY to dialogFragmentsData
+            )
+            dialogFragment.show(parentFragmentManager, null)
         }
 
         val linearLayout =
             view.findViewById<LinearLayoutCompat>(R.id.linear_layout_dialog_fragments)
 
         linearLayout.forEach { childView: View ->
-            if (childView is Button) childView.setOnClickListener(listener)
+            if (childView is Button) {
+                childView.setOnClickListener(listener)
+            }
         }
     }
 
-    private fun setListeners() {
+    private fun setupDialogFragmentsListeners() {
         parentFragmentManager.setFragmentResultListener(
-            SingleChoiceDialogFragment.REQUEST_KEY,
+            DialogFragmentsData.REQUEST_KEY,
             this
         ) { _, result ->
-            currentVolume = result.getInt(SingleChoiceDialogFragment.CURRENT_VOLUME_KEY)
-            bindViews()
-        }
-
-        parentFragmentManager.setFragmentResultListener(
-            SingleChoiceWithConfirmationDialogFragment.REQUEST_KEY,
-            this
-        ) { _, result ->
-            currentVolume = result.getInt(
-                SingleChoiceWithConfirmationDialogFragment.CURRENT_VOLUME_KEY
-            )
-            bindViews()
-        }
-
-        parentFragmentManager.setFragmentResultListener(
-            MultipleChoiceDialogFragment.REQUEST_KEY,
-            this
-        ) { _, result ->
-            updateCurrentColor(
-                result.getBooleanArray(
-                    MultipleChoiceDialogFragment.BOOLEAN_COLOR_KEY
-                )
-            )
-            bindViews()
-        }
-
-        parentFragmentManager.setFragmentResultListener(
-            MultipleChoiceWithConfirmationDialogFragment.REQUEST_KEY,
-            this
-        ) { _, result ->
-            updateCurrentColor(
-                result.getBooleanArray(
-                    MultipleChoiceWithConfirmationDialogFragment.BOOLEAN_COLOR_KEY
-                )
-            )
+            dialogFragmentsData = result.getParcelable(DialogFragmentsData.REQUEST_KEY)
+                ?: dialogFragmentsData
             bindViews()
         }
     }
 
-    private fun updateCurrentColor(array: BooleanArray?) {
-        if (array != null) {
-            colorAsBooleanArray = array
-            currentColor = Color.rgb(
-                if (array[0]) 255 else 0,
-                if (array[1]) 255 else 0,
-                if (array[2]) 255 else 0
-            )
-        }
+    private fun updateCurrentColor() {
+        val myColor = dialogFragmentsData.currentColorAsBooleans
+        currentColor = Color.rgb(
+            if (myColor.redEnabled) 255 else 0,
+            if (myColor.greenEnabled) 255 else 0,
+            if (myColor.blueEnabled) 255 else 0
+        )
     }
 }

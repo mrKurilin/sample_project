@@ -8,24 +8,22 @@ import androidx.core.os.bundleOf
 class SingleChoiceWithConfirmationDialogFragment : MyDialogFragment.VolumeSetupDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        initVariables(CURRENT_VOLUME_KEY)
+        val dialogFragmentsData = requireArguments()
+            .getParcelable<DialogFragmentsData>(DialogFragmentsData.RESPONSE_KEY)!!
+        val currentIndex = dialogFragmentsData.volumes.indexOf(dialogFragmentsData.currentVolume)
 
         return AlertDialog.Builder(requireContext())
             .setTitle("Setup volume")
+            .setSingleChoiceItems(dialogFragmentsData.volumesStrings, currentIndex, null)
             .setPositiveButton("Confirm") { dialog, _ ->
                 val index = (dialog as AlertDialog).listView.checkedItemPosition
-                currentVolume = volumes[index]
+                dialogFragmentsData.currentVolume = dialogFragmentsData.volumes[index]
                 parentFragmentManager.setFragmentResult(
-                    REQUEST_KEY, bundleOf(CURRENT_VOLUME_KEY to currentVolume)
+                    DialogFragmentsData.REQUEST_KEY,
+                    bundleOf(DialogFragmentsData.RESPONSE_KEY to dialogFragmentsData)
                 )
                 dismiss()
             }
-            .setSingleChoiceItems(volumesStrings, volumes.indexOf(currentVolume), null)
             .create()
-    }
-
-    companion object {
-        const val CURRENT_VOLUME_KEY = "SingleChoiceWithConfirmationDialogFragmentKey"
-        const val REQUEST_KEY = "SingleChoiceWithConfirmationDialogFragmentRequestKey"
     }
 }

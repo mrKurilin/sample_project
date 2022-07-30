@@ -8,23 +8,23 @@ import androidx.core.os.bundleOf
 class SingleChoiceDialogFragment : MyDialogFragment.VolumeSetupDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        initVariables(CURRENT_VOLUME_KEY)
+        val dialogFragmentsData = requireArguments()
+            .getParcelable<DialogFragmentsData>(DialogFragmentsData.RESPONSE_KEY)!!
+        val currentIndex = dialogFragmentsData.volumes.indexOf(dialogFragmentsData.currentVolume)
 
         return AlertDialog.Builder(requireContext())
             .setTitle("Setup volume")
-            .setSingleChoiceItems(volumesStrings, currentIndex) { _, which ->
-                val chosenVolume = volumes[which]
+            .setSingleChoiceItems(
+                dialogFragmentsData.volumesStrings,
+                currentIndex
+            ) { _, which ->
+                dialogFragmentsData.currentVolume = dialogFragmentsData.volumes[which]
                 parentFragmentManager.setFragmentResult(
-                    REQUEST_KEY,
-                    bundleOf(CURRENT_VOLUME_KEY to chosenVolume)
+                    DialogFragmentsData.REQUEST_KEY,
+                    bundleOf(DialogFragmentsData.RESPONSE_KEY to dialogFragmentsData)
                 )
                 dismiss()
             }
             .create()
-    }
-
-    companion object {
-        const val CURRENT_VOLUME_KEY = "CURRENT_VOLUME_KEY"
-        const val REQUEST_KEY = "REQUEST_KEY"
     }
 }

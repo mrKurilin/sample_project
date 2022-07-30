@@ -63,8 +63,8 @@ class SwitchViewHolder(
     private fun changeBluetoothState() {
         val bluetoothPermissionGranted = ActivityCompat.checkSelfPermission(
             itemView.context,
-            Manifest.permission.BLUETOOTH_CONNECT
-        ) != PackageManager.PERMISSION_GRANTED
+            Manifest.permission.BLUETOOTH_ADMIN
+        ) == PackageManager.PERMISSION_GRANTED
 
         if (bluetoothPermissionGranted) {
             if (bluetoothAdapter.isEnabled) {
@@ -79,6 +79,7 @@ class SwitchViewHolder(
             }
         } else {
             Toast.makeText(itemView.context, "Permission denied", Toast.LENGTH_LONG).show()
+            bluetoothSwitch.isEnabled = false
         }
     }
 

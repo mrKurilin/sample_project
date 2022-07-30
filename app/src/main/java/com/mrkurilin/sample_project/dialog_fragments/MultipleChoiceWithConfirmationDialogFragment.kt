@@ -4,28 +4,28 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
+import com.mrkurilin.sample_project.R
 
-class MultipleChoiceWithConfirmationDialogFragment : MyDialogFragment.ColorSetupFragment() {
+class MultipleChoiceWithConfirmationDialogFragment : MyDialogFragment.ColorSetupDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        initCheckedColors(BOOLEAN_COLOR_KEY)
+        val dialogFragmentsData = requireArguments().getParcelable<DialogFragmentsData>(
+            DialogFragmentsData.RESPONSE_KEY
+        )!!
+        initCheckedColors(dialogFragmentsData)
 
         return AlertDialog.Builder(requireContext())
             .setTitle("Setup color")
-            .setMultiChoiceItems(colors, checkedColors) { _, which, isChecked ->
+            .setMultiChoiceItems(R.array.colors, checkedColors) { _, which, isChecked ->
                 checkedColors[which] = isChecked
             }
             .setPositiveButton("Confirm") { _, _ ->
+                updateCurrentColorAsBooleans(dialogFragmentsData)
                 parentFragmentManager.setFragmentResult(
-                    REQUEST_KEY,
-                    bundleOf(BOOLEAN_COLOR_KEY to checkedColors)
+                    DialogFragmentsData.REQUEST_KEY,
+                    bundleOf(DialogFragmentsData.RESPONSE_KEY to dialogFragmentsData)
                 )
             }
             .create()
-    }
-
-    companion object {
-        const val REQUEST_KEY = "MultipleChoiceWithConfirmationDialogFragmentRequestKey"
-        const val BOOLEAN_COLOR_KEY = "MultipleChoiceWithConfirmationDialogFragmentBC"
     }
 }

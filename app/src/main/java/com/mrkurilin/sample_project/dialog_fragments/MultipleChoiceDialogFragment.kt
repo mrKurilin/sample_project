@@ -4,27 +4,27 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.core.os.bundleOf
+import com.mrkurilin.sample_project.R
 
-class MultipleChoiceDialogFragment : MyDialogFragment.ColorSetupFragment() {
+class MultipleChoiceDialogFragment : MyDialogFragment.ColorSetupDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        initCheckedColors(BOOLEAN_COLOR_KEY)
+        val dialogFragmentsData = requireArguments().getParcelable<DialogFragmentsData>(
+            DialogFragmentsData.RESPONSE_KEY
+        )!!
+        initCheckedColors(dialogFragmentsData)
 
         return AlertDialog.Builder(requireContext())
             .setTitle("Setup Color")
-            .setMultiChoiceItems(colors, checkedColors) { _, which, isChecked ->
+            .setMultiChoiceItems(R.array.colors, checkedColors) { _, which, isChecked ->
                 checkedColors[which] = isChecked
+                updateCurrentColorAsBooleans(dialogFragmentsData)
                 parentFragmentManager.setFragmentResult(
-                    REQUEST_KEY,
-                    bundleOf(BOOLEAN_COLOR_KEY to checkedColors)
+                    DialogFragmentsData.REQUEST_KEY,
+                    bundleOf(DialogFragmentsData.RESPONSE_KEY to dialogFragmentsData)
                 )
             }
             .setPositiveButton("Cancel", null)
             .create()
-    }
-
-    companion object {
-        const val REQUEST_KEY = "MultipleChoiceDialogFragmentRequestKey"
-        const val BOOLEAN_COLOR_KEY = "MultipleChoiceDialogFragmentBC"
     }
 }

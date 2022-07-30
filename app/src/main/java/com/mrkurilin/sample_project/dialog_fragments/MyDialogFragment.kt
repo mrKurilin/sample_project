@@ -1,11 +1,8 @@
 package com.mrkurilin.sample_project.dialog_fragments
 
 import android.content.DialogInterface
-import android.graphics.Color
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.mrkurilin.sample_project.R
-import kotlin.properties.Delegates
 
 interface MyDialogFragment {
 
@@ -17,27 +14,24 @@ interface MyDialogFragment {
         }
     }
 
-    open class VolumeSetupDialogFragment : Base() {
+    open class VolumeSetupDialogFragment : Base()
 
-        protected val volumes = (0..100 step 10).toList().toIntArray()
-        protected var currentVolume by Delegates.notNull<Int>()
-        protected var currentIndex by Delegates.notNull<Int>()
-        protected lateinit var volumesStrings: Array<String>
+    open class ColorSetupDialogFragment : Base() {
 
-        fun initVariables(key: String) {
-            currentVolume = requireArguments().getInt(key)
-            currentIndex = volumes.indexOf(currentVolume)
-            volumesStrings = volumes.map { getString(R.string.volumes_list, it) }.toTypedArray()
-        }
-    }
-
-    open class ColorSetupFragment : Base() {
-
-        protected val colors = arrayOf("Red", "Green", "Blue")
         protected lateinit var checkedColors: BooleanArray
 
-        fun initCheckedColors(key: String) {
-            checkedColors = requireArguments().getBooleanArray(key) ?: booleanArrayOf(false, false, false)
+        fun initCheckedColors(dialogFragmentsData: DialogFragmentsData) {
+            checkedColors = booleanArrayOf(
+                dialogFragmentsData.currentColorAsBooleans.redEnabled,
+                dialogFragmentsData.currentColorAsBooleans.greenEnabled,
+                dialogFragmentsData.currentColorAsBooleans.blueEnabled
+            )
+        }
+
+        fun updateCurrentColorAsBooleans(dialogFragmentsData: DialogFragmentsData) {
+            dialogFragmentsData.currentColorAsBooleans.redEnabled = checkedColors[0]
+            dialogFragmentsData.currentColorAsBooleans.greenEnabled = checkedColors[1]
+            dialogFragmentsData.currentColorAsBooleans.blueEnabled = checkedColors[2]
         }
     }
 }

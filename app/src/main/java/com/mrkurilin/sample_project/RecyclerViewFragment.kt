@@ -14,15 +14,23 @@ import com.mrkurilin.sample_project.ui_model.*
 
 class RecyclerViewFragment : Fragment() {
 
-    private val wifiStateActivityResultContract = WifiStateActivityResultContract()
-    private val wifiStateActivityResultContractLauncher = registerForActivityResult(
-        wifiStateActivityResultContract,
-    ) {
-        updateItems()
+    private val adapter by lazy {
+        val wifiStateActivityResultContractLauncher = registerForActivityResult(
+            WifiStateActivityResultContract()
+        ) {
+            updateItems()
+        }
+        WidgetRecyclerAdapter {
+            wifiStateActivityResultContractLauncher.launch(Any())
+        }
     }
 
-    private val adapter =
-        WidgetRecyclerAdapter() { wifiStateActivityResultContractLauncher.launch(Any()) }
+    private val bluetoothAdapter by lazy {
+        val bluetoothManager = requireContext().applicationContext.getSystemService(
+            Context.BLUETOOTH_SERVICE
+        ) as BluetoothManager
+        bluetoothManager.adapter
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,19 +45,13 @@ class RecyclerViewFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_fragment)
 
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         recyclerView.adapter = adapter
         updateItems()
     }
 
     private fun updateItems() {
-        val bluetoothManager = requireContext().applicationContext.getSystemService(
-            Context.BLUETOOTH_SERVICE
-        ) as BluetoothManager
-        val bluetoothAdapter = bluetoothManager.adapter
-
         val items = listOf(
             AutocompleteUiModel,
             CheckBoxUiModel,
@@ -65,7 +67,6 @@ class RecyclerViewFragment : Fragment() {
             ToggleButtonUiModel,
         )
         adapter.setItems(items)
-
         adapter.notifyDataSetChanged()
     }
 }
