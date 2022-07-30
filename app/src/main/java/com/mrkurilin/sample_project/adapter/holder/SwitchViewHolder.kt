@@ -16,7 +16,7 @@ import com.mrkurilin.sample_project.ui_model.SwitchUiModel
 
 class SwitchViewHolder(
     view: View,
-    private val toggleBluetooth: () -> Unit
+    private val toggleWifi: () -> Unit
 ) : RecyclerView.ViewHolder(view) {
 
     private val wifiSwitch: SwitchCompat = view.findViewById(R.id.switch_wifi_switch_widget)
@@ -53,7 +53,7 @@ class SwitchViewHolder(
     @SuppressWarnings("deprecation")
     private fun changeWifiState() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            toggleBluetooth()
+            toggleWifi()
         } else {
             wifiManager.isWifiEnabled = !wifiManager.isWifiEnabled
             sendWifiToast()

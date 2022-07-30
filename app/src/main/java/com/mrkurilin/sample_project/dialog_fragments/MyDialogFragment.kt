@@ -14,8 +14,6 @@ interface MyDialogFragment {
         }
     }
 
-    open class VolumeSetupDialogFragment : Base()
-
     open class ColorSetupDialogFragment : Base() {
 
         protected lateinit var checkedColors: BooleanArray

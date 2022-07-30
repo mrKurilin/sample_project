@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 
-class SingleChoiceDialogFragment : MyDialogFragment.VolumeSetupDialogFragment() {
+class SingleChoiceDialogFragment : MyDialogFragment.Base() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialogFragmentsData = requireArguments()
